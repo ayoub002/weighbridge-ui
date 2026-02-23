@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weighmaster - Connexion</title>
+    <title>Weighbridge - Connexion</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -15,207 +15,108 @@
                     },
                     colors: {
                         brand: {
-                            blue: '#59658A',      
-                            blueDark: '#414A69',
-                            gold: '#DDA73B',      
-                            goldHover: '#C49230',
-                            bg: '#FCFBF9',        
-                            input: '#EEF2F6'      
+                            orange: '#DD4B25', // L'orange vif de la référence
+                            dark: '#1A1A1A',
+                            gray: '#4A4A4A',
+                            bg: '#F3F4F6'      // Fond gris clair
                         }
-                    },
-                    boxShadow: {
-                        'glass': '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Rayures rouges et blanches pour les rampes de la bascule */
-        .stripes {
-            background: repeating-linear-gradient(
-                45deg,
-                #EF4444,
-                #EF4444 10px,
-                #ffffff 10px,
-                #ffffff 20px
-            );
+        /* Effet pour teinter l'image du camion en orange */
+        .orange-filter {
+            filter: sepia(1) saturate(3) hue-rotate(-20deg) opacity(0.9);
+            mix-blend-mode: multiply;
         }
-        /* Police digitale pour l'afficheur */
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-        .digital-font { font-family: 'VT323', monospace; }
-
-        /* --- ANIMATIONS --- */
-        
-        /* 1. Le camion qui arrive de la gauche */
-        @keyframes driveIn {
-            0% { transform: translateX(-1500px); } /* Démarre hors de l'écran */
-            100% { transform: translateX(-20%); }  /* Freine sur la bascule */
-        }
-        
-        /* 2. Le formulaire de login qui apparaît */
-        @keyframes showLogin {
-            0% { 
-                opacity: 0; 
-                transform: translateY(40px); 
-                backdrop-filter: blur(0px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0); 
-                backdrop-filter: blur(6px); /* Ajoute l'effet verre dépoli à la fin */
-            }
-        }
-
-        .camion-anime {
-            /* Dure 2.5 secondes avec un effet de freinage naturel (cubic-bezier) */
-            animation: driveIn 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        .login-anime {
-            opacity: 0;
-            /* L'animation du login commence après 2.5s (quand le camion s'arrête) et dure 0.8s */
-            animation: showLogin 0.8s ease-out 2.5s forwards; 
+        /* Motif de fond subtil pour la partie droite */
+        .pattern-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(221, 75, 37, 0.15) 1px, transparent 0);
+            background-size: 32px 32px;
         }
     </style>
 </head>
-<body class="bg-brand-bg font-sans h-screen w-full relative overflow-hidden selection:bg-brand-gold selection:text-white">
+<body class="bg-brand-bg font-sans min-h-screen flex overflow-hidden selection:bg-brand-orange selection:text-white">
 
-    <div class="absolute inset-0 z-0 px-10 pt-16 md:px-20 md:pt-24 flex flex-col">
-        
-        <div class="flex items-center gap-3 mb-12">
-            <div class="relative w-12 h-12">
-                <div class="absolute inset-0 border-[3px] border-gray-400 rounded-full border-t-transparent border-r-transparent transform -rotate-45"></div>
-                <div class="absolute top-2 left-2 w-2 h-2 bg-gray-600 rounded-sm"></div>
-                <div class="absolute top-0 right-2 w-2 h-2 bg-gray-400 rounded-sm"></div>
-                <div class="absolute bottom-2 right-0 w-2 h-2 bg-gray-400 rounded-sm"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-1 h-8 bg-gray-500 transform rotate-12"></div>
+    <div class="flex-1 flex flex-col lg:flex-row">
+
+        <div class="w-full lg:w-5/12 p-8 md:p-16 flex flex-col justify-between overflow-y-auto relative z-10">
+            
+            <div class="flex items-center gap-3 mb-12 lg:mb-0">
+                <div class="w-10 h-10 bg-brand-orange rounded-xl flex items-center justify-center text-white shadow-md shadow-brand-orange/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0h1.05a1 1 0 001-1V7a1 1 0 00-1-1h-6z" />
+                    </svg>
                 </div>
+                <span class="text-2xl font-black text-brand-dark tracking-tight">Weighbridge</span>
+            </div>
+
+            <div class="my-auto">
+                <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-brand-orange leading-none uppercase tracking-tight mb-8">
+                    Une pesée plus rapide. <br>
+                    Plus fiable. <br>
+                    Plus intelligente.
+                </h1>
+
+                <p class="text-brand-gray text-lg leading-relaxed max-w-xl mb-10">
+                    Notre plateforme SaaS vous aide à gérer vos pesées de camions et de charges sans complexité : enregistrement automatique, suivi des mouvements, rapports instantanés et contrôle des anomalies. Optimisez votre temps et sécurisez vos données.
+                </p>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl shadow-brand-gray/5 border border-gray-100 max-w-md relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-20 h-20 bg-brand-orange/10 rounded-full blur-xl"></div>
+
+                    <h2 class="text-2xl font-bold text-brand-dark mb-6 relative z-10">Se connecter</h2>
+                    
+                    <form action="index.html" class="space-y-5 relative z-10">
+                        <div>
+                            <label class="block text-sm font-bold text-brand-gray mb-2 ml-2">Email professionnel</label>
+                            <input type="email" 
+                                   placeholder="nom@entreprise.com" 
+                                   class="w-full px-6 py-4 bg-gray-50 rounded-2xl border-2 border-transparent focus:border-brand-orange/30 focus:bg-white focus:ring-4 focus:ring-brand-orange/10 outline-none transition-all font-medium text-brand-dark placeholder-gray-400">
+                        </div>
+                        
+                        <div>
+                             <label class="block text-sm font-bold text-brand-gray mb-2 ml-2">Mot de passe</label>
+                            <input type="password" 
+                                   placeholder="••••••••" 
+                                   class="w-full px-6 py-4 bg-gray-50 rounded-2xl border-2 border-transparent focus:border-brand-orange/30 focus:bg-white focus:ring-4 focus:ring-brand-orange/10 outline-none transition-all font-medium text-brand-dark placeholder-gray-400">
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-brand-orange hover:bg-rose-600 text-white font-extrabold text-lg py-4 rounded-2xl transition-all shadow-lg shadow-brand-orange/30 hover:shadow-xl hover:shadow-brand-orange/40 hover:-translate-y-0.5 mt-4">
+                            Accéder à la plateforme
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-4 mt-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                 <div class="h-12 w-32 bg-contain bg-no-repeat bg-center" style="background-image: url('https://cdn-icons-png.flaticon.com/512/2821/2821838.png');"></div>
+                <div class="h-12 w-32 bg-contain bg-no-repeat bg-center" style="background-image: url('https://cdn-icons-png.flaticon.com/512/2821/2821838.png');"></div>
+            </div>
+        </div>
+
+
+        <div class="hidden lg:block w-7/12 relative overflow-hidden bg-orange-50 pattern-bg flex items-center justify-center">
+            
+            <div class="absolute w-[800px] h-[800px] bg-brand-orange/10 rounded-full blur-3xl -top-40 -right-40"></div>
+            
+            <div class="relative w-[120%] max-w-[900px] transform translate-x-10 translate-y-10">
+                 <div class="absolute inset-0 bg-brand-orange mix-blend-color opacity-40 z-10 pointer-events-none"></div>
+                <img src="https://img.freepik.com/premium-photo/modern-heavy-truck-is-parking-port-terminal_159934-647.jpg?w=1800" 
+                     alt="Truck on weighbridge illustration" 
+                     class="w-full h-auto object-cover relative z-0 orange-filter drop-shadow-2xl">
             </div>
             
-            <div class="flex flex-col leading-none">
-                <span class="text-[22px] font-black text-brand-blue tracking-wider">WEIGHMASTER</span>
-                <span class="text-[11px] font-bold text-brand-blue tracking-widest mt-0.5">BALANCES DU SUD</span>
-                <span class="text-[22px] font-black text-brand-gold tracking-widest mt-0.5">LOGICIEL</span>
+            <div class="absolute bottom-20 right-20 bg-brand-dark text-white px-6 py-2 rounded-lg font-mono text-xl font-bold tracking-widest shadow-xl z-20 border-2 border-brand-orange/50">
+                0000000
             </div>
         </div>
 
-        <div class="max-w-2xl relative z-10">
-            <h1 class="text-[2.75rem] md:text-5xl font-black text-brand-blue leading-[1.1] mb-6 tracking-tight uppercase">
-                Optimisez votre pesée,<br>avec une précision fiable
-            </h1>
-            <p class="text-gray-500 font-medium leading-relaxed text-sm md:text-base max-w-xl text-justify">
-                Un logiciel de balance de pesée est un type de logiciel conçu pour aider les entreprises à gérer leurs opérations de pesée de camions ou de charges. Il peut inclure des fonctionnalités telles que la saisie des données de pesée, la génération de rapports, la gestion des entrées/sorties et la vérification des erreurs.
-            </p>
-        </div>
     </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[300px] z-0 pointer-events-none">
-        
-        <div class="absolute bottom-12 left-20 w-32 h-40 bg-[#A5C996] rounded-t-full opacity-80"></div>
-        <div class="absolute bottom-12 right-10 w-48 h-32 bg-[#A5C996] rounded-t-full opacity-60"></div>
-        <div class="absolute bottom-12 right-40 w-24 h-24 bg-[#8EBC7C] rounded-t-full opacity-90"></div>
-
-        <div class="absolute bottom-0 w-full h-8 bg-[#4A4A4A]"></div>
-        
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[600px] h-4 bg-[#3C64B1] shadow-[0_5px_0_#2B4A85]"></div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-[300px] w-20 h-4 stripes transform origin-bottom-right -skew-x-[45deg] shadow-[2px_2px_0_rgba(0,0,0,0.2)]"></div>
-        <div class="absolute bottom-8 left-1/2 translate-x-[300px] w-20 h-4 stripes transform origin-bottom-left skew-x-[45deg] shadow-[-2px_2px_0_rgba(0,0,0,0.2)]"></div>
-
-        <div class="absolute bottom-12 left-[15%] w-48 h-36 bg-white border-t-[12px] border-[#3C64B1] shadow-xl flex flex-col items-center">
-            <div class="bg-[#3C64B1] text-white font-black text-lg px-8 py-1 -mt-3 shadow-md tracking-wider">STATION</div>
-            <div class="w-24 h-14 bg-[#2D3748] mt-6 rounded-sm border-2 border-gray-300"></div>
-        </div>
-
-        <div class="absolute bottom-16 left-[5%] flex flex-col items-center">
-            <div class="bg-[#2D3748] border-4 border-gray-600 p-2 rounded-lg shadow-2xl relative z-10">
-                <div id="weight-display" class="digital-font text-[#4ADE80] text-4xl leading-none tracking-widest drop-shadow-[0_0_8px_rgba(74,222,128,0.8)]">00000</div>
-            </div>
-            <div class="w-3 h-20 bg-gray-700"></div>
-        </div>
-
-        <div class="camion-anime absolute bottom-12 left-1/2 flex items-end drop-shadow-2xl">
-            <div class="w-24 h-28 bg-[#FACC15] rounded-tl-[1.5rem] rounded-tr-md relative border-b-8 border-gray-200 z-10">
-                <div class="absolute top-4 left-2 w-12 h-10 bg-[#81E6D9] rounded-tl-xl rounded-br-md opacity-80"></div>
-                <div class="absolute bottom-8 right-4 w-2 h-4 bg-gray-800 rounded-sm"></div>
-                <div class="absolute -bottom-6 left-6 w-12 h-12 bg-gray-800 rounded-full border-[4px] border-gray-300 flex items-center justify-center">
-                    <div class="w-4 h-4 bg-gray-400 rounded-full"></div>
-                </div>
-            </div>
-            
-            <div class="w-[320px] h-32 bg-[#E2E8F0] rounded-sm relative border-b-8 border-gray-300 ml-1">
-                <div class="absolute top-4 left-4 w-[280px] h-12 bg-white/50 skew-x-12"></div>
-                <div class="absolute -bottom-6 right-4 flex gap-2">
-                    <div class="w-12 h-12 bg-gray-800 rounded-full border-[4px] border-gray-300 flex items-center justify-center"><div class="w-4 h-4 bg-gray-400 rounded-full"></div></div>
-                    <div class="w-12 h-12 bg-gray-800 rounded-full border-[4px] border-gray-300 flex items-center justify-center"><div class="w-4 h-4 bg-gray-400 rounded-full"></div></div>
-                    <div class="w-12 h-12 bg-gray-800 rounded-full border-[4px] border-gray-300 flex items-center justify-center"><div class="w-4 h-4 bg-gray-400 rounded-full"></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="login-modal" class="login-anime absolute inset-0 z-50 flex items-center justify-center bg-white/20 p-4" style="pointer-events: none;">
-        
-        <div class="bg-white/90 p-10 rounded-[2rem] shadow-glass border border-white w-full max-w-[420px] transition-all transform hover:scale-[1.01]">
-            <h2 class="text-2xl font-extrabold text-brand-blue mb-8">Se connecter</h2>
-            
-            <form action="index.html">
-                <div class="mb-5">
-                    <input type="email" 
-                           placeholder="app@balancesdusud.com" 
-                           class="w-full bg-brand-input text-brand-blue px-6 py-4 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-brand-gold/20 focus:border-brand-gold border border-transparent transition-all font-semibold text-sm placeholder-gray-400"
-                           required>
-                </div>
-                
-                <div class="mb-8 relative">
-                    <input type="password" 
-                           placeholder="••••••••••••" 
-                           class="w-full bg-brand-input text-brand-blue px-6 py-4 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-brand-gold/20 focus:border-brand-gold border border-transparent transition-all font-semibold text-sm tracking-widest placeholder-gray-400"
-                           required>
-                </div>
-                
-                <button type="submit" 
-                        class="w-full bg-brand-gold hover:bg-brand-goldHover text-white font-extrabold text-lg py-4 rounded-2xl transition-all shadow-[0_10px_20px_-10px_rgba(221,167,59,0.5)] hover:shadow-[0_10px_25px_-5px_rgba(221,167,59,0.6)] hover:-translate-y-1">
-                    Envoyer
-                </button>
-            </form>
-        </div>
-        
-    </div>
-
-    <div class="absolute bottom-2 right-4 z-50 text-[10px] font-semibold text-gray-500">
-        Logiciel de gestion pont bascule créé © 2023 par <span class="font-bold">balances du sud</span>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const display = document.getElementById('weight-display');
-            const loginModal = document.getElementById('login-modal');
-            
-            // Attendre exactement 2.5 secondes (le temps que le camion s'arrête)
-            setTimeout(() => {
-                // 1. Activer les clics sur le formulaire de connexion
-                loginModal.style.pointerEvents = 'auto';
-                
-                // 2. Animer les chiffres de la bascule de 0 à 56789
-                let current = 0;
-                const target = 56789;
-                const step = Math.ceil(target / 40); // Vitesse de l'animation
-                
-                const interval = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(interval);
-                    }
-                    // Affiche toujours 5 chiffres (ex: 00500)
-                    display.innerText = current.toString().padStart(5, '0');
-                }, 20); // Défilement toutes les 20 millisecondes
-                
-            }, 2500); 
-        });
-    </script>
 
 </body>
 </html>
