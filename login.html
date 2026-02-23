@@ -163,4 +163,59 @@
             <form action="index.html">
                 <div class="mb-5">
                     <input type="email" 
-                           placeholder="app
+                           placeholder="app@balancesdusud.com" 
+                           class="w-full bg-brand-input text-brand-blue px-6 py-4 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-brand-gold/20 focus:border-brand-gold border border-transparent transition-all font-semibold text-sm placeholder-gray-400"
+                           required>
+                </div>
+                
+                <div class="mb-8 relative">
+                    <input type="password" 
+                           placeholder="••••••••••••" 
+                           class="w-full bg-brand-input text-brand-blue px-6 py-4 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-brand-gold/20 focus:border-brand-gold border border-transparent transition-all font-semibold text-sm tracking-widest placeholder-gray-400"
+                           required>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-brand-gold hover:bg-brand-goldHover text-white font-extrabold text-lg py-4 rounded-2xl transition-all shadow-[0_10px_20px_-10px_rgba(221,167,59,0.5)] hover:shadow-[0_10px_25px_-5px_rgba(221,167,59,0.6)] hover:-translate-y-1">
+                    Envoyer
+                </button>
+            </form>
+        </div>
+        
+    </div>
+
+    <div class="absolute bottom-2 right-4 z-50 text-[10px] font-semibold text-gray-500">
+        Logiciel de gestion pont bascule créé © 2023 par <span class="font-bold">balances du sud</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const display = document.getElementById('weight-display');
+            const loginModal = document.getElementById('login-modal');
+            
+            // Attendre exactement 2.5 secondes (le temps que le camion s'arrête)
+            setTimeout(() => {
+                // 1. Activer les clics sur le formulaire de connexion
+                loginModal.style.pointerEvents = 'auto';
+                
+                // 2. Animer les chiffres de la bascule de 0 à 56789
+                let current = 0;
+                const target = 56789;
+                const step = Math.ceil(target / 40); // Vitesse de l'animation
+                
+                const interval = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(interval);
+                    }
+                    // Affiche toujours 5 chiffres (ex: 00500)
+                    display.innerText = current.toString().padStart(5, '0');
+                }, 20); // Défilement toutes les 20 millisecondes
+                
+            }, 2500); 
+        });
+    </script>
+
+</body>
+</html>
