@@ -5,354 +5,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weighmaster - Terminal Opérateur</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            500: '#10b981',
-                        },
-                        accent: {
-                            gold: '#E3A024',
-                            goldDark: '#C7881B',
-                            midnight: '#2B3A55',
-                            midnightDark: '#1E293B'
+                            purple: '#6B5AED',
+                            purpleDark: '#5542D0',
+                            purpleLight: '#F0EEFF',
+                            bg: '#F8F9FA',
+                            dark: '#1E2128',
+                            gray: '#8F95B2',
+                            success: '#00C48C',
+                            successLight: '#D1F4E8'
                         }
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
-                        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
+                        'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
+                        'purple-glow': '0 20px 40px -15px rgba(107, 90, 237, 0.25)',
                     }
                 }
             }
         }
     </script>
     <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E4EB; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6B5AED; }
         
         .weight-font {
             font-variant-numeric: tabular-nums;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans h-screen flex overflow-hidden selection:bg-brand-200 selection:text-brand-900">
+<body class="bg-brand-bg text-brand-dark font-sans h-screen flex overflow-hidden selection:bg-brand-purpleLight selection:text-brand-purple">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col h-full flex-shrink-0 z-20 shadow-soft">
-        <div class="h-20 flex items-center justify-center border-b border-gray-100">
-            <h2 class="text-2xl font-black text-accent-midnight tracking-tight flex items-center gap-2">
-                <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                WEIGH<span class="text-accent-gold">MASTER</span>
+    <aside class="w-[280px] bg-white flex flex-col h-full flex-shrink-0 z-20 shadow-soft border-r border-gray-100 rounded-r-[2.5rem] relative overflow-hidden">
+        
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-brand-purpleLight rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+        <div class="h-28 flex items-center justify-center relative z-10">
+            <h2 class="text-2xl font-extrabold text-brand-dark tracking-tight flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-purple rounded-xl flex items-center justify-center shadow-purple-glow">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                </div>
+                WEIGH<span class="text-brand-purple">MASTER</span>
             </h2>
         </div>
 
-<nav class="flex-1 px-4 py-6 space-y-3 overflow-y-auto custom-scrollbar">
+        <nav class="flex-1 px-6 py-4 space-y-3 overflow-y-auto custom-scrollbar relative z-10">
             
-            <a href="index.html" class="flex items-center gap-4 px-5 py-4 bg-accent-midnight text-accent-gold rounded-2xl font-bold transition-all shadow-md">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                <span class="text-[17px]">Bascule</span>
+            <a href="index.html" class="flex items-center gap-4 px-5 py-4 bg-brand-purple text-white rounded-2xl font-bold transition-all shadow-purple-glow group">
+                <div class="bg-white/20 p-2 rounded-xl">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <span class="text-[16px]">Bascule</span>
             </a>
             
-            <a href="parametres.html" class="flex items-center gap-4 px-5 py-4 text-gray-600 hover:bg-gray-100 hover:text-accent-midnight rounded-2xl font-medium transition-all">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <span class="text-[17px]">Paramètres</span>
+            <a href="parametres.html" class="flex items-center gap-4 px-5 py-4 text-brand-gray hover:bg-brand-purpleLight hover:text-brand-purple rounded-2xl font-semibold transition-all group">
+                <div class="bg-gray-50 group-hover:bg-white p-2 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                <span class="text-[16px]">Paramètres</span>
             </a>
             
-            <a href="historique.html" class="flex items-center gap-4 px-5 py-4 text-gray-600 hover:bg-gray-100 hover:text-accent-midnight rounded-2xl font-medium transition-all">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span class="text-[17px]">Historique</span>
+            <a href="historique.html" class="flex items-center gap-4 px-5 py-4 text-brand-gray hover:bg-brand-purpleLight hover:text-brand-purple rounded-2xl font-semibold transition-all group">
+                <div class="bg-gray-50 group-hover:bg-white p-2 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <span class="text-[16px]">Historique</span>
             </a>
-            
         </nav>
-        <div class="p-4 border-t border-gray-100 flex flex-col gap-3">
-            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-200 hover:border-accent-midnight hover:text-accent-midnight text-gray-700 rounded-xl font-bold transition-all shadow-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                Export data
-            </button>
-            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white rounded-xl font-bold transition-all">
+
+        <div class="p-6 mt-auto relative z-10">
+            <div class="bg-brand-purpleLight rounded-[2rem] p-5 text-center mb-4">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm text-brand-purple">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                </div>
+                <p class="text-xs font-bold text-brand-purple mb-3">Besoin d'une copie ?</p>
+                <button class="w-full bg-brand-purple hover:bg-brand-purpleDark text-white py-2.5 rounded-xl text-sm font-bold transition-all shadow-purple-glow">Export data</button>
+            </div>
+            
+            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl font-bold transition-all">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                 Se déconnecter
             </button>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col relative overflow-hidden">
+    <main class="flex-1 flex flex-col relative overflow-hidden pl-4">
         
-        <header class="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-8 z-10 flex-shrink-0 shadow-sm">
+        <header class="h-28 flex items-center justify-between px-10 z-10 flex-shrink-0">
             <div>
-                <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Pesée en cours</h1>
-                <p class="text-brand-500 font-semibold text-sm">Action requise : capturer le poids d'entrée</p>
+                <h1 class="text-4xl font-extrabold text-brand-dark tracking-tight mb-2">Bonjour, S. Ayoub 👋</h1>
+                <p class="text-brand-gray font-medium text-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
+                    Pesée en cours : Action requise pour capturer l'entrée
+                </p>
             </div>
             
             <div class="flex items-center gap-6">
-                <div class="flex items-center gap-4 bg-gray-50 p-1.5 rounded-xl border border-gray-200 shadow-inner-soft">
-                    <div class="flex items-center gap-2 px-3 py-1.5 bg-white rounded-lg border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-3 bg-white p-2 rounded-[1.5rem] shadow-soft border border-gray-100/50">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-brand-successLight rounded-2xl text-brand-success">
                         <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-success opacity-50"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-success"></span>
                         </span>
-                        <span class="text-sm font-bold text-gray-700">Bascule connectée</span>
+                        <span class="text-sm font-bold">Connecté</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-lg border border-blue-100 text-blue-700 shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        <span class="text-sm font-bold">Mode entrée</span>
-                    </div>
-                    <div class="px-2 text-sm font-semibold text-gray-400">
-                        Signal: N/A
+                    <div class="flex items-center gap-2 px-4 py-2 bg-brand-purpleLight rounded-2xl text-brand-purple">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        <span class="text-sm font-bold">Entrée</span>
                     </div>
                 </div>
 
                 <div class="h-10 w-px bg-gray-200"></div>
 
-                <div class="flex items-center gap-3 cursor-pointer group">
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-gray-900 leading-tight group-hover:text-accent-midnight transition-colors">S. Ayoub</p>
-                        <p class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Opérateur</p>
+                <div class="flex items-center gap-4 cursor-pointer hover:bg-white p-2 pr-4 rounded-[2rem] transition-all">
+                    <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=F0EEFF&color=6B5AED&bold=true" alt="S. Ayoub" class="w-12 h-12 rounded-full shadow-sm">
+                    <div class="hidden md:block text-left">
+                        <p class="text-sm font-bold text-brand-dark leading-tight">S. Ayoub</p>
+                        <p class="text-xs font-semibold text-brand-gray">Opérateur</p>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=2B3A55&color=E3A024&bold=true" alt="S. Ayoub" class="w-10 h-10 rounded-full border-2 border-accent-gold shadow-sm">
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
             </div>
         </header>
 
-        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
-            <div class="max-w-[1800px] mx-auto flex flex-col gap-6 h-full">
+        <div class="flex-1 overflow-y-auto px-10 pb-10 custom-scrollbar">
+            <div class="max-w-[1800px] mx-auto flex flex-col gap-8 h-full">
                 
-                <div class="w-full bg-white p-4 rounded-2xl border border-gray-200 shadow-sm flex-shrink-0">
-                    <div class="grid grid-cols-3 gap-6 relative">
+                <div class="w-full bg-white p-3 rounded-[2rem] shadow-soft border border-gray-100 flex-shrink-0">
+                    <div class="grid grid-cols-3 gap-4 relative">
                         <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 z-0 rounded-full"></div>
-                        <div class="absolute top-1/2 left-0 w-1/3 h-1 bg-brand-500 -translate-y-1/2 z-0 rounded-full"></div>
+                        <div class="absolute top-1/2 left-0 w-1/3 h-1 bg-brand-purple -translate-y-1/2 z-0 rounded-full"></div>
                         
-                        <div class="bg-brand-50 border-2 border-brand-500 rounded-xl p-4 flex items-center justify-between shadow-md relative z-10">
-                            <span class="text-lg font-bold text-brand-800">1. CAPTURER ENTRÉE</span>
-                            <div class="w-8 h-8 rounded-full bg-brand-500 text-white flex items-center justify-center text-sm font-bold shadow-sm">1</div>
+                        <div class="bg-white border-2 border-brand-purple rounded-[1.5rem] p-4 flex items-center justify-between shadow-purple-glow relative z-10">
+                            <span class="text-sm font-bold text-brand-purple">1. CAPTURER ENTRÉE</span>
+                            <div class="w-8 h-8 rounded-full bg-brand-purple text-white flex items-center justify-center text-sm font-bold shadow-sm">1</div>
                         </div>
-                        <div class="bg-white border-2 border-gray-200 rounded-xl p-4 flex items-center justify-between relative z-10">
-                            <span class="text-lg font-bold text-gray-400">2. COMPLÉTER INFOS</span>
-                            <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-sm font-bold border border-gray-200">2</div>
+                        <div class="bg-white border-2 border-transparent rounded-[1.5rem] p-4 flex items-center justify-between relative z-10">
+                            <span class="text-sm font-bold text-gray-400">2. COMPLÉTER INFOS</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-sm font-bold">2</div>
                         </div>
-                        <div class="bg-white border-2 border-gray-200 rounded-xl p-4 flex items-center justify-between relative z-10">
-                            <span class="text-lg font-bold text-gray-400">3. CAPTURER SORTIE & IMPRIMER</span>
-                            <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-sm font-bold border border-gray-200">3</div>
+                        <div class="bg-white border-2 border-transparent rounded-[1.5rem] p-4 flex items-center justify-between relative z-10">
+                            <span class="text-sm font-bold text-gray-400">3. CAPTURER SORTIE & IMPRIMER</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-sm font-bold">3</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 flex-1 min-h-[700px]">
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 flex-1 min-h-[600px]">
                     
-                    <div class="xl:col-span-7 flex flex-col gap-6">
+                    <div class="xl:col-span-7 flex flex-col gap-8">
                         
-                        <div class="grid grid-cols-12 gap-6">
-                            <div class="col-span-9 bg-accent-midnight rounded-[2rem] p-10 shadow-soft relative flex flex-col justify-between min-h-[350px]">
-                                <div class="flex justify-between items-start mb-6">
-                                    <h3 class="text-accent-gold font-semibold text-3xl">Poids (kg)</h3>
+                        <div class="grid grid-cols-12 gap-8">
+                            <div class="col-span-9 bg-brand-purple rounded-[3rem] p-10 shadow-purple-glow relative flex flex-col justify-between overflow-hidden">
+                                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+                                <div class="absolute bottom-10 -left-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl pointer-events-none"></div>
+
+                                <div class="flex justify-between items-start mb-6 relative z-10">
+                                    <div class="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/20">
+                                        <h3 class="text-white font-bold text-lg">Poids actuel (kg)</h3>
+                                    </div>
                                     
-                                    <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
-                                        <svg class="w-12 h-12 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                                        <div>
-                                            <p class="text-white/80 text-lg leading-tight font-medium">Ticket de<br>pesée</p>
+                                    <div class="flex items-center gap-4 bg-white p-4 rounded-[1.5rem] shadow-sm">
+                                        <div class="bg-brand-purpleLight p-2.5 rounded-xl text-brand-purple">
+                                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                                         </div>
-                                        <div class="text-white text-5xl font-extrabold ml-4">17</div>
+                                        <div>
+                                            <p class="text-brand-gray text-xs font-bold uppercase tracking-wider">Ticket N°</p>
+                                            <p class="text-brand-dark text-2xl font-black leading-none mt-1">17</p>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="flex-1 flex items-center justify-center py-4">
-                                    <span class="text-[140px] font-extrabold text-accent-gold leading-none tracking-tight weight-font drop-shadow-[0_0_25px_rgba(227,160,36,0.2)]">
+                                <div class="flex-1 flex items-center justify-center py-6 relative z-10">
+                                    <span class="text-[150px] font-black text-white leading-none tracking-tighter weight-font drop-shadow-xl">
                                         2500
                                     </span>
                                 </div>
 
-                                <div class="flex justify-end mt-4">
-                                    <button class="bg-accent-gold hover:bg-accent-goldDark text-accent-midnight font-extrabold py-5 px-10 rounded-2xl text-2xl shadow-lg transition-transform hover:scale-105 flex items-center gap-3">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                                        Ajouter la Tare
+                                <div class="flex justify-end mt-4 relative z-10">
+                                    <button class="bg-white text-brand-purple hover:bg-brand-purpleLight font-extrabold py-4 px-8 rounded-2xl text-xl shadow-lg transition-transform hover:-translate-y-1 flex items-center gap-3">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                        Ajouter Tare
                                     </button>
                                 </div>
                             </div>
 
-                            <div class="col-span-3 flex flex-col gap-4">
-                                <button class="flex-1 bg-accent-gold hover:bg-accent-goldDark text-accent-midnight font-extrabold py-6 px-6 rounded-2xl text-2xl shadow-lg transition-transform hover:scale-105 flex flex-col items-center justify-center gap-3">
-                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Read
+                            <div class="col-span-3 flex flex-col gap-6">
+                                <button class="flex-1 bg-white border border-gray-100 text-brand-dark hover:border-brand-purple hover:text-brand-purple font-extrabold p-6 rounded-[2rem] text-xl shadow-soft transition-all hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+                                    <div class="bg-gray-50 group-hover:bg-brand-purpleLight p-4 rounded-[1.5rem] transition-colors">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
+                                    </div>
+                                    Read
                                 </button>
-                                <button class="flex-1 bg-accent-gold hover:bg-accent-goldDark text-accent-midnight font-extrabold py-6 px-6 rounded-2xl text-2xl shadow-lg transition-transform hover:scale-105 flex flex-col items-center justify-center gap-3">
-                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg> Save
+                                <button class="flex-1 bg-brand-dark text-white hover:bg-gray-800 font-extrabold p-6 rounded-[2rem] text-xl shadow-soft transition-all hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+                                    <div class="bg-gray-700 p-4 rounded-[1.5rem] transition-colors">
+                                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                                    </div>
+                                    Save
                                 </button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-6 mt-auto">
-                            <div class="bg-accent-midnight rounded-2xl p-6 shadow-soft flex flex-col gap-2 border border-accent-midnightDark">
-                                <span class="text-lg font-bold text-white/80">Poids d'entrée (kg)</span>
-                                <div class="text-center">
-                                    <span class="text-4xl font-bold text-accent-gold weight-font">0.00</span>
-                                </div>
+                        <div class="grid grid-cols-3 gap-8 mt-auto">
+                            <div class="bg-white rounded-[2rem] p-6 shadow-soft border border-gray-100 flex flex-col gap-2 items-center justify-center relative overflow-hidden">
+                                <div class="absolute top-0 w-full h-1 bg-brand-success"></div>
+                                <span class="text-sm font-bold text-brand-gray uppercase tracking-wider">Poids d'entrée</span>
+                                <span class="text-4xl font-black text-brand-dark weight-font">0.00</span>
                             </div>
-                            <div class="bg-accent-midnight rounded-2xl p-6 shadow-soft flex flex-col gap-2 border border-accent-midnightDark">
-                                <span class="text-lg font-bold text-white/80">Poids sortie (kg)</span>
-                                <div class="text-center">
-                                    <span class="text-4xl font-bold text-accent-gold weight-font">0.00</span>
-                                </div>
+                            <div class="bg-white rounded-[2rem] p-6 shadow-soft border border-gray-100 flex flex-col gap-2 items-center justify-center relative overflow-hidden">
+                                <div class="absolute top-0 w-full h-1 bg-[#FF7675]"></div>
+                                <span class="text-sm font-bold text-brand-gray uppercase tracking-wider">Poids sortie</span>
+                                <span class="text-4xl font-black text-brand-dark weight-font">0.00</span>
                             </div>
-                            <div class="bg-accent-midnight rounded-2xl p-6 shadow-soft flex flex-col gap-2 border border-accent-midnightDark">
-                                <span class="text-lg font-bold text-white/80">Poids net (kg)</span>
-                                <div class="text-center">
-                                    <span class="text-4xl font-bold text-accent-gold weight-font">0.00</span>
-                                </div>
+                            <div class="bg-white rounded-[2rem] p-6 shadow-soft border border-gray-100 flex flex-col gap-2 items-center justify-center relative overflow-hidden bg-gradient-to-br from-white to-gray-50">
+                                <span class="text-sm font-bold text-brand-gray uppercase tracking-wider">Poids net</span>
+                                <span class="text-4xl font-black text-brand-purple weight-font">0.00</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="xl:col-span-5 flex flex-col gap-4 h-full">
+                    <div class="xl:col-span-5 flex flex-col gap-6 h-full">
                         
-                        <div class="bg-white rounded-[2rem] border border-gray-200 shadow-soft flex flex-col flex-1 overflow-hidden relative">
+                        <div class="bg-white rounded-[2.5rem] shadow-soft border border-gray-100 flex flex-col flex-1 overflow-hidden relative">
                             
-                            <div class="p-6 border-b border-gray-200 bg-gray-50 flex items-center justify-between flex-shrink-0">
-                                <div class="bg-gray-200/60 p-1.5 rounded-xl flex inline-flex">
-                                    <button id="btn-tab-new" onclick="switchTab('new')" class="px-6 py-3 rounded-lg text-base font-semibold transition-all text-gray-600 hover:text-gray-900 border border-transparent">
+                            <div class="p-6 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
+                                <div class="bg-gray-50 p-1.5 rounded-2xl flex inline-flex">
+                                    <button id="btn-tab-new" onclick="switchTab('new')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all text-brand-gray hover:text-brand-dark border border-transparent">
                                         Nouveau ticket
                                     </button>
-                                    <button id="btn-tab-list" onclick="switchTab('list')" class="px-6 py-3 rounded-lg text-base transition-all bg-white text-gray-900 shadow-sm font-bold border border-gray-100">
+                                    <button id="btn-tab-list" onclick="switchTab('list')" class="px-6 py-2.5 rounded-xl text-sm transition-all bg-white text-brand-dark shadow-sm font-bold border border-gray-100">
                                         Tickets en cours
                                     </button>
                                 </div>
-                                <div class="bg-accent-midnight border border-accent-midnight text-accent-gold text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-accent-gold animate-pulse"></span>
+                                <div class="bg-brand-purpleLight text-brand-purple text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
                                     4 ouverts
                                 </div>
                             </div>
 
                             <div id="content-tab-list" class="flex flex-col flex-1 overflow-hidden">
                                 
-                                <div class="p-6 border-b border-gray-100 flex-shrink-0 bg-white">
+                                <div class="p-6 border-b border-gray-50 flex-shrink-0">
                                     <div class="relative">
-                                        <input type="text" class="w-full bg-gray-50 border-2 border-gray-200 rounded-2xl py-4 pl-5 pr-14 text-base font-medium focus:outline-none focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/20 transition-all placeholder-gray-400" placeholder="Recherche rapide (matricule, client, etc.)...">
-                                        <button class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-accent-midnight hover:bg-accent-midnightDark text-accent-gold rounded-xl transition-colors">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                        </button>
+                                        <input type="text" class="w-full bg-brand-bg border border-gray-200 rounded-2xl py-4 pl-12 pr-4 text-sm font-semibold focus:outline-none focus:border-brand-purple focus:ring-4 focus:ring-brand-purpleLight transition-all placeholder-gray-400" placeholder="Recherche rapide (matricule, client...)...">
+                                        <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                     </div>
                                 </div>
 
-                                <div class="flex-1 overflow-y-auto p-5 custom-scrollbar space-y-4 bg-gray-50/30">
-                                    <div class="bg-white border-2 border-accent-midnight shadow-md rounded-2xl p-6 transition-all group cursor-pointer relative overflow-hidden">
-                                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-accent-midnight"></div>
-                                        <div class="flex justify-between items-start mb-3 pl-2">
+                                <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-4">
+                                    <div class="bg-white border-2 border-brand-purple shadow-purple-glow rounded-[1.5rem] p-5 transition-all group cursor-pointer relative overflow-hidden">
+                                        <div class="flex justify-between items-center mb-4">
                                             <div class="flex items-center gap-3">
-                                                <h4 class="text-xl font-black text-gray-900">Ticket #17</h4>
-                                                <span class="bg-accent-midnight text-accent-gold text-sm font-bold px-3 py-1 rounded-lg">20000 kg</span>
+                                                <div class="w-10 h-10 bg-brand-purpleLight rounded-xl flex items-center justify-center text-brand-purple">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-base font-bold text-brand-dark">Ticket #17</h4>
+                                                    <span class="text-xs font-semibold text-brand-gray">22/02/2026 • 21h 6m</span>
+                                                </div>
                                             </div>
-                                            <span class="text-sm font-bold text-accent-midnight bg-accent-midnight/10 px-3 py-1 rounded-lg flex items-center gap-1.5">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                21h 6m
-                                            </span>
+                                            <span class="bg-brand-purple text-white text-xs font-bold px-3 py-1.5 rounded-lg">20 000 kg</span>
                                         </div>
-                                        <div class="flex items-center gap-3 mb-4 pl-2">
-                                            <span class="font-extrabold text-accent-midnight text-lg border-b-2 border-accent-midnight/20">ASD515</span>
-                                            <span class="text-gray-300 text-lg">•</span>
-                                            <span class="text-base text-gray-500 font-medium">Chauffeur non défini</span>
+                                        <div class="flex items-center gap-2 mb-4 bg-gray-50 p-3 rounded-xl">
+                                            <span class="font-extrabold text-brand-dark text-sm bg-white px-2 py-1 rounded-md border border-gray-200">ASD515</span>
+                                            <span class="text-xs text-brand-gray font-medium">Chauffeur non défini</span>
                                         </div>
-                                        <div class="flex justify-between items-center border-t border-gray-100 pt-4 pl-2">
-                                            <span class="text-sm text-gray-400 font-semibold">22/02/2026 00:00</span>
-                                            <button class="text-base font-bold text-gray-700 hover:text-accent-midnight flex items-center gap-1 transition-colors bg-gray-100 hover:bg-accent-midnight/10 px-4 py-2 rounded-lg">
-                                                Continuer <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                            </button>
-                                        </div>
+                                        <button class="w-full text-sm font-bold text-brand-purple bg-brand-purpleLight hover:bg-brand-purple hover:text-white py-2.5 rounded-xl transition-colors">
+                                            Continuer la pesée
+                                        </button>
                                     </div>
                                     
-                                    <div class="bg-white border-2 border-gray-100 hover:border-gray-300 rounded-2xl p-6 transition-all group cursor-pointer">
-                                        <div class="flex justify-between items-start mb-3">
+                                    <div class="bg-white border border-gray-100 hover:border-gray-200 shadow-sm rounded-[1.5rem] p-5 transition-all group cursor-pointer">
+                                        <div class="flex justify-between items-center mb-4">
                                             <div class="flex items-center gap-3">
-                                                <h4 class="text-xl font-bold text-gray-700">Ticket #12</h4>
-                                                <span class="bg-gray-100 text-gray-800 text-sm font-bold px-3 py-1 rounded-lg">14640 kg</span>
+                                                <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-base font-bold text-brand-dark">Ticket #12</h4>
+                                                    <span class="text-xs font-semibold text-brand-gray">26/09/2023 • 880j 0h</span>
+                                                </div>
                                             </div>
-                                            <span class="text-sm font-medium text-gray-500 flex items-center gap-1.5">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                880j 0h
-                                            </span>
+                                            <span class="bg-gray-100 text-brand-dark text-xs font-bold px-3 py-1.5 rounded-lg">14 640 kg</span>
                                         </div>
-                                        <div class="flex items-center gap-3 mb-4">
-                                            <span class="font-bold text-gray-700 text-lg">2468A7</span>
-                                            <span class="text-gray-300 text-lg">•</span>
-                                            <span class="text-base text-gray-500 font-medium">Chauffeur non défini</span>
-                                        </div>
-                                        <div class="flex justify-between items-center border-t border-gray-100 pt-4">
-                                            <span class="text-sm text-gray-400 font-semibold">26/09/2023 21:55</span>
-                                            <button class="text-base font-bold text-gray-500 hover:text-gray-800 flex items-center gap-1 transition-colors">
-                                                Détails <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                            </button>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-extrabold text-brand-dark text-sm bg-gray-50 px-2 py-1 rounded-md border border-gray-100">2468A7</span>
+                                            <span class="text-xs text-brand-gray font-medium">Chauffeur non défini</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div id="content-tab-new" class="hidden flex-col flex-1 overflow-y-auto p-8 custom-scrollbar bg-white">
-                                <div class="flex items-center justify-between mb-8">
-                                    <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                                        <div class="p-2 bg-accent-gold/20 rounded-lg text-accent-goldDark">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                                        </div>
-                                        Saisir les informations
-                                    </h3>
-                                    <span class="text-sm font-semibold text-gray-400">Étape 2/3</span>
-                                </div>
-                                
-                                <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
-                                    <div class="md:col-span-2">
-                                        <label class="block text-sm font-bold text-gray-700 mb-2">N° Matricule <span class="text-red-500">*</span></label>
-                                        <input type="text" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/10 outline-none transition-all font-semibold text-gray-900 text-lg placeholder-gray-400" placeholder="Entrer la plaque (ex: 1234-A-56)">
-                                    </div>
-                                    
+                            <div id="content-tab-new" class="hidden flex-col flex-1 overflow-y-auto p-8 custom-scrollbar">
+                                <h3 class="text-xl font-extrabold text-brand-dark mb-6">Saisir les informations</h3>
+                                <form class="space-y-5">
                                     <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-2">Nom chauffeur</label>
-                                        <input type="text" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/10 outline-none transition-all font-semibold text-gray-900 text-lg placeholder-gray-400" placeholder="Nom du chauffeur">
+                                        <label class="block text-xs font-bold text-brand-gray uppercase tracking-wider mb-2">N° Matricule <span class="text-red-500">*</span></label>
+                                        <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-gray-200 bg-brand-bg focus:border-brand-purple focus:ring-4 focus:ring-brand-purpleLight outline-none transition-all font-semibold text-brand-dark text-sm placeholder-gray-400">
                                     </div>
-                                    
                                     <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-2">Client</label>
-                                        <input type="text" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/10 outline-none transition-all font-semibold text-gray-900 text-lg placeholder-gray-400" placeholder="Nom du client / fournisseur">
+                                        <label class="block text-xs font-bold text-brand-gray uppercase tracking-wider mb-2">Produits</label>
+                                        <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-gray-200 bg-brand-bg focus:border-brand-purple focus:ring-4 focus:ring-brand-purpleLight outline-none transition-all font-semibold text-brand-dark text-sm placeholder-gray-400">
                                     </div>
-
                                     <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-2">Produits</label>
-                                        <input type="text" class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/10 outline-none transition-all font-semibold text-gray-900 text-lg placeholder-gray-400" placeholder="Type de marchandise">
+                                        <label class="block text-xs font-bold text-brand-gray uppercase tracking-wider mb-2">Client</label>
+                                        <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-gray-200 bg-brand-bg focus:border-brand-purple focus:ring-4 focus:ring-brand-purpleLight outline-none transition-all font-semibold text-brand-dark text-sm placeholder-gray-400">
                                     </div>
-                                    
-                                    <div>
-                                        <label class="block text-sm font-bold text-gray-700 mb-2">Famille de produit</label>
-                                        <div class="relative">
-                                            <select class="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-accent-midnight focus:ring-4 focus:ring-accent-midnight/10 outline-none transition-all appearance-none bg-white font-semibold text-gray-900 text-lg">
-                                                <option value="" disabled selected class="text-gray-400">Sélectionner une famille</option>
-                                                <option>Céréales</option>
-                                                <option>Matériaux de construction</option>
-                                                <option>Liquides & Vrac</option>
-                                            </select>
-                                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-500">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="md:col-span-2 pt-4 border-t border-gray-100 mt-2">
-                                        <button type="button" class="w-full bg-accent-midnight hover:bg-accent-midnightDark text-white font-bold py-4 rounded-xl text-lg shadow-md transition-all flex justify-center items-center gap-2">
-                                            Enregistrer les informations du ticket
-                                            <svg class="w-5 h-5 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                    <div class="pt-4 mt-2 border-t border-gray-100">
+                                        <button type="button" class="w-full bg-brand-dark hover:bg-gray-800 text-white font-bold py-4 rounded-xl text-sm shadow-md transition-all">
+                                            Enregistrer les informations
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div class="flex justify-end flex-shrink-0 mt-2">
-                            <button class="bg-white border-2 border-gray-300 hover:border-red-400 hover:bg-red-50 hover:text-red-600 text-gray-600 font-bold py-3 px-8 rounded-xl text-lg transition-all flex items-center gap-2 shadow-sm">
+                        <div class="flex justify-end flex-shrink-0">
+                            <button class="bg-white border border-gray-200 hover:border-[#FF7675] hover:bg-[#FFF0F0] text-[#FF7675] font-bold py-3.5 px-8 rounded-[1.5rem] text-sm transition-all flex items-center gap-2 shadow-sm">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                 Clear
                             </button>
@@ -372,8 +352,8 @@
             const contentNew = document.getElementById('content-tab-new');
             const contentList = document.getElementById('content-tab-list');
 
-            const activeClassesBtn = ['bg-white', 'text-gray-900', 'shadow-sm', 'font-bold', 'border', 'border-gray-100'];
-            const inactiveClassesBtn = ['text-gray-600', 'hover:text-gray-900', 'font-semibold', 'border-transparent'];
+            const activeClassesBtn = ['bg-white', 'text-brand-dark', 'shadow-sm', 'font-bold', 'border', 'border-gray-100'];
+            const inactiveClassesBtn = ['text-brand-gray', 'hover:text-brand-dark', 'font-bold', 'border-transparent'];
 
             if (tabName === 'new') {
                 btnNew.classList.remove(...inactiveClassesBtn);
