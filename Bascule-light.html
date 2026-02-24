@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weighmaster - Light Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#DD4B25',    
+                            dark: '#1e293b',      // Slate 800 pour les textes sombres
+                            text: '#0f172a',      // Slate 900
+                            textMuted: '#64748b', // Slate 500 pour les textes secondaires
+                        }
+                    },
+                    boxShadow: {
+                        'glass-light': '0 10px 40px -10px rgba(0, 0, 0, 0.05)',
+                        'glow-orange': '0 0 20px -5px rgba(221, 75, 37, 0.4)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Glassmorphism version CLAIRE */
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-input-light {
+             background: rgba(241, 245, 249, 0.8); /* Fond gris très clair (slate-100) */
+             border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #DD4B25; }
+        
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-brand-text font-sans overflow-hidden relative">
+
+    <div class="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-orange-200/50 rounded-full blur-[100px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-200/50 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+    <div class="flex h-screen relative z-10">
+
+        <aside class="w-[260px] glass-panel-light border-r border-slate-200 flex flex-col h-full flex-shrink-0 relative z-20">
+            <div class="h-24 flex items-center px-8">
+                <h2 class="text-xl font-black tracking-tight flex items-center gap-3">
+                    <div class="w-9 h-9 bg-brand-orange rounded-lg flex items-center justify-center shadow-glow-orange text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    </div>
+                    WEIGH MASTER
+                </h2>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="#" class="flex items-center gap-4 px-5 py-3.5 bg-brand-orange text-white shadow-glow-orange rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="text-[15px]">Bascule</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-slate-100 hover:text-brand-dark rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-[15px]">Paramètres</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-slate-100 hover:text-brand-dark rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-[15px]">Historique</span>
+                </a>
+            </nav>
+
+            <div class="p-6 mt-auto">
+                <div class="glass-input-light rounded-2xl p-4 mb-4 relative overflow-hidden">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-3 text-brand-orange border border-slate-200 shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    </div>
+                    <p class="text-xs font-bold text-center text-brand-dark mb-3">Besoin d'une copie ?</p>
+                    <button class="w-full bg-brand-orange hover:bg-orange-600 text-white py-2.5 rounded-xl text-sm font-bold transition-all shadow-glow-orange">Export data</button>
+                </div>
+                <button class="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Se déconnecter
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col relative overflow-hidden">
+            
+            <header class="h-24 flex items-center justify-between px-8 z-10 flex-shrink-0">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-brand-dark tracking-tight flex items-center gap-3">
+                        Bonjour, S. Ayoub 
+                        <span class="text-2xl">👋</span>
+                    </h1>
+                    <p class="text-brand-textMuted font-medium text-sm mt-1 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse shadow-glow-orange"></span>
+                        Pesée en cours : Action requise pour capturer l'entrée
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="glass-panel-light px-2 py-1.5 rounded-full flex items-center gap-2">
+                         <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-100 rounded-full text-emerald-600">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-xs font-bold">Connecté</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-3 py-1.5 bg-orange-100 rounded-full text-brand-orange">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            <span class="text-xs font-bold">Entrée</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel-light p-1.5 pr-4 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white transition-all">
+                        <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=DD4B25&color=FFFFFF&bold=true" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                        <div class="text-right">
+                            <p class="text-sm font-bold text-brand-dark leading-tight">S. Ayoub</p>
+                            <p class="text-xs font-semibold text-brand-textMuted">Opérateur</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto px-8 pb-8 custom-scrollbar relative z-10">
+                <div class="max-w-[1600px] mx-auto flex flex-col gap-6 h-full">
+                    
+                    <div class="glass-panel-light p-2 rounded-full flex items-center justify-between">
+                        <div class="flex-1 flex items-center justify-between bg-brand-orange text-white shadow-glow-orange rounded-full px-2 py-2 mr-2 relative z-10">
+                             <span class="text-sm font-bold ml-4">1. CAPTURER ENTRÉE</span>
+                             <div class="w-8 h-8 rounded-full bg-white text-brand-orange flex items-center justify-center font-black shadow-sm">1</div>
+                        </div>
+                        <div class="flex-1 flex items-center justify-between px-6 py-3">
+                             <span class="text-sm font-bold text-brand-textMuted">2. COMPLÉTER INFOS</span>
+                             <div class="w-8 h-8 rounded-full bg-slate-100 text-brand-textMuted flex items-center justify-center font-bold">2</div>
+                        </div>
+                         <div class="flex-1 flex items-center justify-between px-6 py-3">
+                             <span class="text-sm font-bold text-brand-textMuted">3. SORTIE & IMPRIMER</span>
+                             <div class="w-8 h-8 rounded-full bg-slate-100 text-brand-textMuted flex items-center justify-center font-bold">3</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-6 flex-1 min-h-[600px]">
+                        
+                        <div class="col-span-7 flex flex-col gap-6">
+                            
+                            <div class="rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px] bg-gradient-to-br from-brand-orange via-orange-500 to-orange-400 shadow-glow-orange border border-orange-300">
+                                
+                                <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.3),_transparent_60%)] pointer-events-none"></div>
+
+                                <div class="flex justify-between items-start relative z-10">
+                                    <div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl border border-white/30">
+                                        <h3 class="text-white font-bold text-sm uppercase tracking-wider">Poids actuel (kg)</h3>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl border border-white/30 flex items-center gap-3">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                                        <div>
+                                            <p class="text-white/80 text-[10px] font-bold uppercase tracking-wider">Ticket N°</p>
+                                            <p class="text-white text-xl font-black leading-none">17</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1 flex items-center justify-center py-6 relative z-10">
+                                    <span class="text-[150px] font-black text-white leading-none tracking-tighter tabular-nums drop-shadow-md">2500</span>
+                                </div>
+
+                                <div class="flex justify-end mt-4 relative z-10">
+                                    <button class="bg-white text-brand-orange shadow-lg hover:bg-orange-50 font-extrabold py-3 px-6 rounded-xl text-lg transition-transform hover:-translate-y-1 flex items-center gap-3">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                        Ajouter Tare
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <button class="glass-panel-light hover:bg-white text-brand-dark border-slate-200 font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group">
+                                    <div class="glass-input-light p-3 rounded-xl group-hover:bg-brand-orange/10 group-hover:text-brand-orange transition-colors">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                    </div>
+                                    Lire le poids
+                                </button>
+                                <button class="bg-slate-800 hover:bg-slate-900 text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 shadow-lg flex items-center justify-center gap-4 group">
+                                    <div class="bg-slate-700 border border-slate-600 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    </div>
+                                    Enregistrer
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-6 mt-auto">
+                                <div class="glass-panel-light rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group border-slate-200">
+                                    <div class="absolute top-0 left-0 w-full h-1 bg-slate-200 group-hover:bg-brand-orange transition-all"></div>
+                                    <span class="text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2">Poids d'entrée</span>
+                                    <span class="text-4xl font-black text-brand-dark tabular-nums">0.00</span>
+                                </div>
+                                <div class="glass-panel-light rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group border-slate-200">
+                                     <div class="absolute top-0 left-0 w-full h-1 bg-slate-200 group-hover:bg-brand-orange transition-all"></div>
+                                    <span class="text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2">Poids sortie</span>
+                                    <span class="text-4xl font-black text-brand-dark tabular-nums">0.00</span>
+                                </div>
+                                <div class="bg-orange-50 border border-orange-200 rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden shadow-sm">
+                                     <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange"></div>
+                                    <span class="text-xs font-bold text-brand-orange uppercase tracking-wider mb-2">Poids net</span>
+                                    <span class="text-4xl font-black text-brand-orange tabular-nums">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-5 flex flex-col gap-6 h-full">
+                            
+                            <div class="glass-panel-light rounded-[2.5rem] flex flex-col flex-1 overflow-hidden relative border-slate-200">
+                                
+                                <div class="p-6 border-b border-slate-100 flex items-center justify-between flex-shrink-0">
+                                    <div class="glass-input-light p-1 rounded-2xl flex inline-flex">
+                                        <button onclick="switchTab('new')" id="btn-tab-new" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all text-brand-textMuted hover:text-brand-dark bg-transparent">
+                                            Ajouter une pesée
+                                        </button>
+                                        <button onclick="switchTab('list')" id="btn-tab-list" class="px-5 py-2.5 rounded-xl text-sm transition-all bg-white shadow-sm text-brand-dark font-bold border border-slate-200">
+                                            Pesées en cours
+                                        </button>
+                                    </div>
+                                    <div class="bg-white px-4 py-2 rounded-xl flex items-center gap-2 text-xs font-bold text-brand-dark border border-slate-200 shadow-sm">
+                                        <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                                        4 ouverts
+                                    </div>
+                                </div>
+
+                                <div id="content-tab-list" class="flex flex-col flex-1 overflow-hidden">
+                                    <div class="p-6 flex-shrink-0 pb-2">
+                                        <div class="relative">
+                                            <input type="text" class="w-full glass-input-light rounded-2xl py-4 pl-12 pr-4 text-sm font-semibold focus:outline-none focus:border-brand-orange/50 focus:bg-white transition-all placeholder-brand-textMuted text-brand-dark" placeholder="Recherche rapide...">
+                                            <svg class="w-5 h-5 text-brand-textMuted absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-4">
+                                        
+                                        <div class="bg-orange-50/80 border border-orange-200 shadow-sm rounded-[1.5rem] p-5 transition-all cursor-pointer relative overflow-hidden">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <h4 class="text-lg font-black text-slate-900">Ticket #17</h4>
+                                                        <span class="bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full">20000 kg</span>
+                                                    </div>
+                                                    <p class="text-sm font-medium text-brand-textMuted">
+                                                        <span class="text-emerald-600 font-extrabold">ASD515</span> • Chauffeur non défini
+                                                    </p>
+                                                </div>
+                                                <span class="text-xs font-medium text-brand-textMuted">Ouvert 2 j 0 h</span>
+                                            </div>
+
+                                            <div class="flex justify-between items-center text-xs font-bold text-brand-dark mb-4 border-b border-orange-200 pb-3">
+                                                <span>22/02/2026 00:00</span>
+                                                <span class="flex items-center gap-1 cursor-pointer">Détails <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg></span>
+                                            </div>
+
+                                            <div class="grid grid-cols-2 gap-y-2 text-sm mb-5">
+                                                <p class="text-brand-textMuted">Produit: <span class="text-brand-dark font-semibold">TEST P 1</span></p>
+                                                <p class="text-brand-textMuted">Famille: <span class="text-brand-dark font-semibold">TOMAT</span></p>
+                                                <p class="text-brand-textMuted">Client: <span class="text-brand-dark font-semibold">CLIENT 1</span></p>
+                                                <p class="text-brand-textMuted">Dernière MAJ: <span class="text-brand-dark font-semibold">22/02/2026 00:00</span></p>
+                                            </div>
+
+                                            <button class="w-full text-sm font-bold text-white bg-brand-orange hover:bg-orange-600 py-3 rounded-xl transition-all shadow-glow-orange">
+                                                Continuer la pesée
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="bg-white border border-slate-200 hover:border-slate-300 rounded-[1.5rem] p-5 transition-all cursor-pointer shadow-sm">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <h4 class="text-lg font-black text-slate-900">Ticket #12</h4>
+                                                        <span class="bg-slate-100 text-slate-800 text-xs font-bold px-3 py-1 rounded-full">14640 kg</span>
+                                                    </div>
+                                                    <p class="text-sm font-medium text-brand-textMuted">
+                                                        <span class="text-emerald-600 font-extrabold">2468A7</span> • Chauffeur non défini
+                                                    </p>
+                                                </div>
+                                                <span class="text-xs font-medium text-brand-textMuted">Ouvert 881 j 3 h</span>
+                                            </div>
+
+                                            <div class="flex justify-between items-center text-xs font-bold text-brand-dark">
+                                                <span>26/09/2023 21:55</span>
+                                                <span class="flex items-center gap-1 cursor-pointer">Détails <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="content-tab-new" class="hidden flex-col flex-1 overflow-y-auto p-8 custom-scrollbar">
+                                    <form class="space-y-5">
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">N° Matricule <span class="text-brand-orange">*</span></label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-brand-dark text-sm placeholder-slate-400" placeholder="Ex: 12345-A-1">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Chauffeur</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-brand-dark text-sm placeholder-slate-400" placeholder="Nom du chauffeur">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Produit</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-brand-dark text-sm placeholder-slate-400" placeholder="Type de produit">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Client</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-brand-dark text-sm placeholder-slate-400" placeholder="Nom du client">
+                                        </div>
+                                        
+                                        <div class="pt-4 mt-2 border-t border-slate-100">
+                                            <button type="button" class="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 rounded-xl text-sm shadow-glow-orange transition-all flex items-center justify-center gap-2">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                                                Créer la pesée
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="p-6 border-t border-slate-100 flex justify-end flex-shrink-0">
+                                      <button class="bg-white hover:bg-red-50 text-red-500 border border-red-200 font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center gap-2 shadow-sm">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        Clear
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            const btnNew = document.getElementById('btn-tab-new');
+            const btnList = document.getElementById('btn-tab-list');
+            const contentNew = document.getElementById('content-tab-new');
+            const contentList = document.getElementById('content-tab-list');
+
+            const activeClassesBtn = ['bg-white', 'shadow-sm', 'text-brand-dark', 'border', 'border-slate-200'];
+            const inactiveClassesBtn = ['text-brand-textMuted', 'hover:text-brand-dark', 'bg-transparent'];
+
+            if (tabName === 'new') {
+                btnNew.classList.remove(...inactiveClassesBtn);
+                btnNew.classList.add(...activeClassesBtn);
+                btnList.classList.remove(...activeClassesBtn);
+                btnList.classList.add(...inactiveClassesBtn);
+
+                contentNew.classList.remove('hidden');
+                contentNew.classList.add('flex');
+                contentList.classList.add('hidden');
+                contentList.classList.remove('flex');
+            } else {
+                btnList.classList.remove(...inactiveClassesBtn);
+                btnList.classList.add(...activeClassesBtn);
+                btnNew.classList.remove(...activeClassesBtn);
+                btnNew.classList.add(...inactiveClassesBtn);
+
+                contentList.classList.remove('hidden');
+                contentList.classList.add('flex');
+                contentNew.classList.add('hidden');
+                contentNew.classList.remove('flex');
+            }
+        }
+    </script>
+</body>
+</html>
