@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weighmaster - Historique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], },
+                    colors: {
+                        brand: { orange: '#DD4B25', dark: '#1e293b', text: '#0f172a', textMuted: '#64748b', }
+                    },
+                    boxShadow: {
+                        'glass-light': '0 10px 40px -10px rgba(0, 0, 0, 0.05)',
+                        'glow-orange': '0 0 20px -5px rgba(221, 75, 37, 0.4)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel-light { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05); }
+        .glass-input-light { background: rgba(241, 245, 249, 0.8); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #DD4B25; }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-brand-text font-sans overflow-hidden relative">
+
+    <div class="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-orange-200/50 rounded-full blur-[100px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-200/50 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+    <div class="flex h-screen relative z-10">
+
+        <aside class="w-[260px] glass-panel-light border-r border-slate-200 flex flex-col h-full flex-shrink-0 relative z-20">
+            <div class="h-24 flex items-center px-8">
+                <h2 class="text-xl font-black tracking-tight flex items-center gap-3">
+                    <div class="w-9 h-9 bg-brand-orange rounded-lg flex items-center justify-center shadow-glow-orange text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    </div>
+                    WEIGH MASTER
+                </h2>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="Bascule-light.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-slate-100 hover:text-brand-dark rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="text-[15px]">Bascule</span>
+                </a>
+                <a href="parametres-light.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-slate-100 hover:text-brand-dark rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-[15px]">Paramètres</span>
+                </a>
+                <a href="historique-light.html" class="flex items-center gap-4 px-5 py-3.5 bg-brand-orange text-white shadow-glow-orange rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-[15px]">Historique</span>
+                </a>
+            </nav>
+
+            <div class="p-6 mt-auto">
+                <button class="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Se déconnecter
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col relative overflow-hidden">
+            
+            <header class="h-24 flex items-center justify-between px-8 z-10 flex-shrink-0">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-brand-dark tracking-tight">Historique des pesées</h1>
+                    <p class="text-brand-textMuted font-medium text-sm mt-1">Consultez, filtrez et exportez vos données.</p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="historique.html" class="glass-panel-light p-2 rounded-full text-brand-textMuted hover:text-brand-dark hover:bg-slate-100 transition-all cursor-pointer shadow-sm group border border-slate-200" title="Passer au mode sombre">
+                        <svg class="w-5 h-5 group-hover:-rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </a>
+                    
+                    <div class="glass-panel-light p-1.5 pr-4 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white transition-all">
+                        <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=DD4B25&color=FFFFFF&bold=true" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                        <div class="text-right">
+                            <p class="text-sm font-bold text-brand-dark leading-tight">S. Ayoub</p>
+                            <p class="text-xs font-semibold text-brand-textMuted">Opérateur</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-hidden px-8 pb-8 flex flex-col z-10">
+                
+                <div class="glass-panel-light border-slate-200 rounded-t-[2rem] p-6 flex flex-wrap items-center justify-between gap-4 border-b-0 shadow-sm">
+                    
+                    <div class="relative w-full md:w-auto min-w-[300px]">
+                        <input type="text" class="w-full glass-input-light rounded-xl py-3 pl-10 pr-4 text-sm font-semibold focus:outline-none focus:border-brand-orange/50 focus:bg-white transition-all placeholder-brand-textMuted text-brand-dark" placeholder="Recherche par matricule, client...">
+                        <svg class="w-5 h-5 text-brand-textMuted absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+                        <div class="flex items-center gap-2">
+                            <input type="date" class="glass-input-light text-brand-dark text-sm rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-brand-orange/50">
+                            <span class="text-brand-textMuted">-</span>
+                            <input type="date" class="glass-input-light text-brand-dark text-sm rounded-xl px-4 py-3 outline-none focus:bg-white focus:border-brand-orange/50">
+                        </div>
+                        
+                        <button class="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl text-sm shadow-glow-orange transition-all flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Télécharger excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel-light border-slate-200 rounded-b-[2rem] flex-1 overflow-auto custom-scrollbar border-t-0 shadow-sm">
+                    <table class="w-full text-left whitespace-nowrap">
+                        <thead class="sticky top-0 bg-slate-50/90 backdrop-blur-md z-10 border-b border-slate-200">
+                            <tr>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Matricule</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Chauffeur</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Client</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-orange uppercase tracking-wider">Poids Net</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Entrée</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Sortie</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider text-center">Ticket</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider">Date</th>
+                                <th class="py-4 px-6 text-xs font-bold text-brand-textMuted uppercase tracking-wider text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            
+                            <tr class="hover:bg-slate-50 transition-colors group">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-brand-textMuted border border-slate-200"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg></div>
+                                        <span class="font-extrabold text-brand-dark">ASD515</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-brand-textMuted">-</td>
+                                <td class="py-4 px-6 text-brand-dark font-medium">CLIENT 1</td>
+                                <td class="py-4 px-6 font-black text-brand-orange tabular-nums">20 000 kg</td>
+                                <td class="py-4 px-6 text-brand-dark tabular-nums">20 000 kg</td>
+                                <td class="py-4 px-6 text-brand-textMuted tabular-nums">0 kg</td>
+                                <td class="py-4 px-6 text-center"><span class="bg-slate-100 border border-slate-200 text-brand-dark px-3 py-1 rounded-full font-bold">17</span></td>
+                                <td class="py-4 px-6 text-brand-textMuted">2026-02-22 00:00</td>
+                                <td class="py-4 px-6 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-blue-600 transition-colors" title="Modifier"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-emerald-600 transition-colors" title="Imprimer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50 transition-colors group">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-brand-textMuted border border-slate-200"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg></div>
+                                        <span class="font-extrabold text-brand-dark">333A3</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-brand-textMuted">-</td>
+                                <td class="py-4 px-6 text-brand-dark font-medium">TEST C 1</td>
+                                <td class="py-4 px-6 font-black text-brand-orange tabular-nums">7 920 kg</td>
+                                <td class="py-4 px-6 text-brand-dark tabular-nums">12 520 kg</td>
+                                <td class="py-4 px-6 text-brand-dark tabular-nums">4 600 kg</td>
+                                <td class="py-4 px-6 text-center"><span class="bg-slate-100 border border-slate-200 text-brand-dark px-3 py-1 rounded-full font-bold">16</span></td>
+                                <td class="py-4 px-6 text-brand-textMuted">2023-09-26 22:31</td>
+                                <td class="py-4 px-6 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-blue-600 transition-colors" title="Modifier"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-emerald-600 transition-colors" title="Imprimer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                             <tr class="hover:bg-slate-50 transition-colors group">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-brand-textMuted border border-slate-200"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg></div>
+                                        <span class="font-extrabold text-brand-dark">2468A7</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-brand-textMuted">-</td>
+                                <td class="py-4 px-6 text-brand-dark font-medium">TEST C 1</td>
+                                <td class="py-4 px-6 font-black text-brand-orange tabular-nums">14 640 kg</td>
+                                <td class="py-4 px-6 text-brand-dark tabular-nums">14 640 kg</td>
+                                <td class="py-4 px-6 text-brand-textMuted tabular-nums">0 kg</td>
+                                <td class="py-4 px-6 text-center"><span class="bg-slate-100 border border-slate-200 text-brand-dark px-3 py-1 rounded-full font-bold">12</span></td>
+                                <td class="py-4 px-6 text-brand-textMuted">2023-09-26 21:55</td>
+                                <td class="py-4 px-6 text-right">
+                                    <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-blue-600 transition-colors" title="Modifier"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
+                                        <button class="p-2 hover:bg-slate-200 rounded-lg text-emerald-600 transition-colors" title="Imprimer"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex justify-end mt-4">
+                    <div class="glass-input-light flex items-center rounded-xl overflow-hidden shadow-sm">
+                        <button class="px-4 py-2 text-brand-textMuted hover:bg-slate-200 hover:text-brand-dark transition-colors" disabled>Précédent</button>
+                        <div class="px-4 py-2 bg-brand-orange text-white font-bold">1</div>
+                        <button class="px-4 py-2 text-brand-textMuted hover:bg-slate-200 hover:text-brand-dark transition-colors">2</button>
+                        <button class="px-4 py-2 text-brand-textMuted hover:bg-slate-200 hover:text-brand-dark transition-colors">Suivant</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
