@@ -43,6 +43,10 @@
         .glass-card { background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
         .text-gradient-orange { background: linear-gradient(135deg, #DD4B25 0%, #ff7a45 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .badge-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(221, 75, 37, 0.1); border: 1px solid rgba(221, 75, 37, 0.2); color: #DD4B25; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        /* Toggle Switch Custom */
+        .toggle-checkbox:checked { right: 0; border-color: #DD4B25; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #DD4B25; }
     </style>
 </head>
 <body class="text-brand-text font-sans overflow-x-hidden selection:bg-brand-orange selection:text-white relative">
@@ -59,7 +63,7 @@
             </div>
             <div class="hidden md:flex items-center gap-8 font-semibold text-sm z-20">
                 <a href="#features" class="text-brand-textMuted hover:text-white transition-colors">Fonctionnalités</a>
-                <a href="#interface" class="text-brand-textMuted hover:text-white transition-colors">Interface</a>
+                <a href="#temoignages" class="text-brand-textMuted hover:text-white transition-colors">Témoignages</a>
                 <a href="#tarifs" class="text-brand-textMuted hover:text-white transition-colors">Tarifs</a>
             </div>
             <div class="flex items-center gap-4 z-20">
@@ -75,7 +79,6 @@
     <section class="relative pt-40 pb-20 px-6 z-10 flex flex-col items-center text-center overflow-visible">
         
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDQwdjQwSDBWMHptMzkgMzlWMUgxdjM4aDM4eiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjAzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-80 pointer-events-none z-0" style="-webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, black 10%, transparent 80%); mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, black 10%, transparent 80%);"></div>
-
         <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-orange/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
         <div class="absolute top-40 left-[10%] md:left-[20%] flex items-center justify-center opacity-80 z-0 animate-pulse">
@@ -90,7 +93,6 @@
         </div>
         
         <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            
             <div class="badge-pill mb-8">
                 <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
                 Lancement de la v2.0
@@ -114,7 +116,6 @@
         </div>
 
         <div class="w-full max-w-6xl mx-auto mt-20 relative z-10">
-            
             <div class="absolute -top-[1px] left-1/2 -translate-x-1/2 w-4/5 max-w-3xl flex flex-col items-center z-30">
                 <div class="w-full h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-90"></div>
                 <div class="absolute top-0 w-2/3 h-[40px] bg-brand-orange/50 blur-[25px] -translate-y-1/2 pointer-events-none"></div>
@@ -287,6 +288,175 @@
                         <span class="font-bold text-white">Statistiques</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="temoignages" class="pt-24 pb-16 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="badge-pill mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    Témoignages
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Ce que disent nos utilisateurs</h2>
+                <p class="text-brand-textMuted text-lg">Découvrez l'avis des professionnels qui utilisent Weighmaster au quotidien.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=David+Miller&background=DD4B25&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">David Miller</h4>
+                            <p class="text-brand-textMuted text-sm">Directeur Logistique</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"Ce logiciel a complètement transformé notre gestion des camions. L'interface est claire, l'acquisition du poids est instantanée et les rapports nous font gagner un temps fou."</p>
+                </div>
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=James+Anderson&background=1e293b&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">James Anderson</h4>
+                            <p class="text-brand-textMuted text-sm">Opérateur Pont-Bascule</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"Le mode sombre est parfait pour mes gardes de nuit. Le système est tellement intuitif que je n'ai même pas eu besoin de formation pour générer mes premiers tickets."</p>
+                </div>
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=Emma+Lopez&background=DD4B25&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">Emma Lopez</h4>
+                            <p class="text-brand-textMuted text-sm">Responsable Facturation</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"L'export direct de la base de données vers Excel est la fonctionnalité que j'attendais. Je peux suivre les produits et les clients sans aucune erreur de saisie."</p>
+                </div>
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors hidden md:block">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=Sofia+Lee&background=1e293b&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">Sofia Lee</h4>
+                            <p class="text-brand-textMuted text-sm">Chef de Carrière</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"L'intégration avec notre pont SENSOCAR s'est faite en quelques clics. La stabilité du logiciel sur Windows est remarquable."</p>
+                </div>
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors hidden lg:block">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=William+Smith&background=DD4B25&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">William Smith</h4>
+                            <p class="text-brand-textMuted text-sm">PDG</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"Avoir un tableau de bord statistique nous permet d'analyser nos flux de matières premières avec une précision que nous n'avions pas auparavant."</p>
+                </div>
+                <div class="bg-brand-card border border-white/5 rounded-2xl p-8 hover:border-brand-orange/30 transition-colors hidden lg:block">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=Karim+B&background=1e293b&color=fff" alt="Avatar" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="text-white font-bold">Karim B.</h4>
+                            <p class="text-brand-textMuted text-sm">Technicien IT</p>
+                        </div>
+                    </div>
+                    <p class="text-brand-textMuted leading-relaxed">"Le déploiement est super léger, pas d'usine à gaz. La base de données en local nous garantit une sécurité totale de nos informations industrielles."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tarifs" class="pt-24 pb-32 relative z-10 overflow-hidden">
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-[120%] h-[150px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent blur-[80px] -rotate-[25deg] pointer-events-none z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <div class="badge-pill mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Tarifs
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Des plans adaptés à vos besoins</h2>
+                <p class="text-brand-textMuted text-lg mb-8">Choisissez l'offre qui correspond à la taille de votre site industriel.</p>
+
+                <div class="flex items-center justify-center gap-4 text-sm font-bold text-white mb-16">
+                    <span class="text-brand-textMuted">Mensuel</span>
+                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-[#121212] appearance-none cursor-pointer z-10 transition-all duration-300" checked/>
+                        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-[#333] cursor-pointer transition-colors duration-300"></label>
+                    </div>
+                    <span>Annuel <span class="bg-emerald-500/20 text-emerald-400 text-[10px] uppercase px-2 py-1 rounded-md ml-1">20% Off</span></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                
+                <div class="bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-8 hover:border-white/10 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white mb-6">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Essentiel</h3>
+                    <p class="text-brand-textMuted text-sm h-10 mb-6">Idéal pour les petites installations avec un seul pont-bascule.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black text-white">0 MAD</span>
+                    </div>
+                    <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
+                    <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 1 Poste de pesée</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Template ticket standard</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 50 tickets / jour</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> CRM Clients basique</li>
+                    </ul>
+                    <a href="#" class="block w-full text-center py-3 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 transition-colors">Débuter gratuitement</a>
+                </div>
+
+                <div class="relative bg-gradient-to-b from-[#1a110a] to-[#120a05] border border-brand-orange/50 rounded-[2rem] p-8 shadow-glow-orange transform md:-translate-y-4">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-brand-orange/30 blur-[40px] pointer-events-none"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 rounded-lg bg-brand-orange flex items-center justify-center text-white mb-6 shadow-glow-orange">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Professionnel</h3>
+                        <p class="text-brand-textMuted text-sm h-10 mb-6">Pour les entreprises ayant besoin d'un suivi détaillé et de rapports complets.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-black text-white">499 MAD</span><span class="text-brand-textMuted"> /mois</span>
+                        </div>
+                        <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
+                        <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                            <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tout le plan Essentiel</li>
+                            <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tickets illimités</li>
+                            <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Export Base de données (Excel)</li>
+                            <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Templates tickets personnalisés</li>
+                            <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Statistiques avancées</li>
+                        </ul>
+                        <a href="#" class="group relative bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white w-full py-4 rounded-xl font-extrabold text-sm shadow-[0_0_20px_-5px_rgba(221,75,37,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_0px_rgba(221,75,37,0.8)] flex items-center justify-center border border-white/20">
+                            Choisir le plan Pro
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-8 hover:border-white/10 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-white mb-6">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Entreprise</h3>
+                    <p class="text-brand-textMuted text-sm h-10 mb-6">Pour les groupes industriels nécessitant du multi-sites et des intégrations.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black text-white">Sur devis</span>
+                    </div>
+                    <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
+                    <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tout le plan Pro</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Multi-ponts & Multi-sites</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> API & Intégration ERP</li>
+                        <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Formation sur site</li>
+                    </ul>
+                    <a href="#" class="block w-full text-center py-3 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 transition-colors">Contacter les ventes</a>
+                </div>
+
             </div>
         </div>
     </section>
