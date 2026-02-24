@@ -22,15 +22,11 @@
                             textMuted: '#9CA3AF', // Texte gris clair
                         }
                     },
-                    // Configuration des ombres et bordures pour l'effet verre
                     boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)', // Ombre profonde
-                        'glass-edge': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)', // Bordure intérieure fine
-                        'glow-orange': '0 0 25px -5px rgba(221, 75, 37, 0.6)', // Lueur orange
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                        'glass-edge': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                        'glow-orange': '0 0 25px -5px rgba(221, 75, 37, 0.6)',
                     },
-                    backdropBlur: {
-                        'glass': '16px', // Flou standard pour le verre
-                    }
                 }
             }
         }
@@ -38,11 +34,11 @@
     <style>
         /* Styles de base pour le verre */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03); /* Très légère teinte blanche */
-            backdrop-filter: blur(16px);           /* Le flou d'arrière-plan */
-            -webkit-backdrop-filter: blur(16px);   /* Compatibilité Safari */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Bordure fine et claire */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Ombre portée */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
         .glass-panel-dark {
@@ -52,7 +48,6 @@
              border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Scrollbar personnalisée pour le thème sombre */
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
@@ -79,15 +74,15 @@
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-3">
-                <a href="#" class="flex items-center gap-4 px-5 py-3.5 bg-brand-orange/80 backdrop-blur-md border border-white/20 shadow-glow-orange text-white rounded-xl font-bold transition-all">
+                <a href="index.html" class="flex items-center gap-4 px-5 py-3.5 bg-brand-orange/80 backdrop-blur-md border border-white/20 shadow-glow-orange text-white rounded-xl font-bold transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     <span class="text-[15px]">Bascule</span>
                 </a>
-                <a href="#" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
+                <a href="parametres.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <span class="text-[15px]">Paramètres</span>
                 </a>
-                <a href="#" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
+                <a href="historique.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span class="text-[15px]">Historique</span>
                 </a>
@@ -95,7 +90,7 @@
 
             <div class="p-6 mt-auto">
                 <div class="glass-panel-dark rounded-2xl p-4 mb-4 relative overflow-hidden">
-                     <div class="absolute -top-10 -right-10 w-20 h-20 bg-brand-orange/20 rounded-full blur-xl pointer-events-none"></div>
+                    <div class="absolute -top-10 -right-10 w-20 h-20 bg-brand-orange/20 rounded-full blur-xl pointer-events-none"></div>
                     <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3 text-brand-orange border border-white/10">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     </div>
@@ -171,7 +166,7 @@
                         
                         <div class="col-span-7 flex flex-col gap-6">
                             
-                            <div class="col-span-12 rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px]
+                            <div class="rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px]
                                         bg-gradient-to-br from-brand-orange/90 via-orange-600/80 to-brand-dark/80
                                         backdrop-blur-[20px] border border-white/20 shadow-glow-orange/50">
                                 
@@ -207,6 +202,26 @@
                                 </div>
                             </div>
 
+                            <div class="grid grid-cols-2 gap-6">
+                                <button class="glass-panel hover:bg-white/10 text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group">
+                                    <div class="bg-white/10 border border-white/10 p-3 rounded-xl group-hover:scale-110 transition-transform shadow-glass">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </div>
+                                    Lire le poids
+                                </button>
+                                <button class="glass-panel-dark hover:bg-black/60 text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group">
+                                    <div class="bg-black/30 border border-white/5 p-3 rounded-xl group-hover:scale-110 transition-transform shadow-glass">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                    </div>
+                                    Enregistrer
+                                </button>
+                            </div>
+
                             <div class="grid grid-cols-3 gap-6 mt-auto">
                                 <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 transition-all">
                                     <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange transition-all"></div>
@@ -228,21 +243,6 @@
 
                         <div class="col-span-5 flex flex-col gap-6 h-full">
                             
-                            <div class="grid grid-cols-2 gap-6">
-                                <button class="glass-panel hover:bg-white/10 text-white font-extrabold p-6 rounded-[2rem] text-xl transition-all hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group h-[180px]">
-                                    <div class="bg-white/10 border border-white/10 p-4 rounded-[1.5rem] group-hover:scale-110 transition-transform shadow-glass">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> 
-                                    </div>
-                                    Read
-                                </button>
-                                <button class="glass-panel-dark hover:bg-black/60 text-white font-extrabold p-6 rounded-[2rem] text-xl transition-all hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group h-[180px]">
-                                    <div class="bg-black/30 border border-white/5 p-4 rounded-[1.5rem] group-hover:scale-110 transition-transform shadow-glass">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
-                                    </div>
-                                    Save
-                                </button>
-                            </div>
-
                             <div class="glass-panel rounded-[2.5rem] flex flex-col flex-1 overflow-hidden relative">
                                 
                                 <div class="p-6 border-b border-white/10 flex items-center justify-between flex-shrink-0">
