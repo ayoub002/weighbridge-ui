@@ -29,9 +29,6 @@
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
                         }
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E\")",
                     }
                 }
             }
@@ -39,6 +36,7 @@
     </script>
     <style>
         body { background-color: #050505; }
+        .bg-grid-pattern { background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E"); }
         .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
         .text-gradient-orange { background: linear-gradient(135deg, #DD4B25 0%, #ff7a45 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -48,8 +46,8 @@
         .toggle-checkbox:checked { right: 0; border-color: #DD4B25; }
         .toggle-checkbox:checked + .toggle-label { background-color: #DD4B25; }
 
-        /* Animation Scroll Reveal pour les Témoignages */
-        .reveal-card { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); }
+        /* Animation Scroll Reveal */
+        .reveal-card { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -296,95 +294,98 @@
         </div>
     </section>
 
-    <section id="temoignages" class="pt-[100px] pb-[100px] relative z-10 border-t border-white/5 overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-brand-orange/5 blur-[150px] rounded-full pointer-events-none"></div>
+    <section id="temoignages" class="py-[96px] relative overflow-hidden border-t border-white/5 z-10">
+        
+        <div class="absolute left-[-10%] top-0 w-[35%] h-full pointer-events-none z-0" style="background: radial-gradient(circle at left center, rgba(221,75,37,0.18), transparent 70%); filter: blur(60px);"></div>
+        <div class="absolute right-[-10%] top-0 w-[35%] h-full pointer-events-none z-0" style="background: radial-gradient(circle at right center, rgba(221,75,37,0.18), transparent 70%); filter: blur(60px);"></div>
 
-        <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+        <div class="max-w-[1280px] mx-auto px-6 relative z-10">
+            
             <div class="text-center mb-16 testimonial-card">
                 <div class="badge-pill mb-4">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                     Témoignages
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Ce que disent nos utilisateurs</h2>
-                <p class="text-brand-textMuted text-lg max-w-2xl mx-auto">Découvrez l'avis des professionnels qui utilisent Weighmaster au quotidien.</p>
+                <p class="text-[rgba(255,255,255,0.65)] text-[16px] max-w-2xl mx-auto">Découvrez l'avis des professionnels qui utilisent Weighmaster au quotidien.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[28px] items-stretch">
                 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">David Miller</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">Directeur Logistique</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">David Miller</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Directeur Logistique</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="David Miller" class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "Ce logiciel a complètement transformé notre gestion des camions. L'interface est claire, l'acquisition du poids est instantanée et les rapports nous font gagner un temps fou."
                     </p>
                 </div>
 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">Sophia Lee</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">Responsable Facturation</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Sophia Lee</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Responsable Facturation</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Sophia Lee" class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "L'export direct de la base de données vers Excel est la fonctionnalité que j'attendais. Je peux suivre les produits et les clients sans aucune erreur de saisie ou de perte de données."
                     </p>
                 </div>
 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">James Anderson</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">Opérateur Pont-Bascule</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">James Anderson</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Opérateur Pont-Bascule</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="James Anderson" class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "Le mode sombre est parfait pour mes gardes de nuit. Le système est tellement intuitif que je n'ai même pas eu besoin de formation pour générer mes premiers tickets avec l'application."
                     </p>
                 </div>
 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300 hidden md:flex">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">Emma Lopez</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">Chef de Carrière</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden md:flex">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Emma Lopez</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Chef de Carrière</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Emma Lopez" class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "L'intégration avec notre pont SENSOCAR s'est faite en quelques clics. La stabilité du logiciel sur Windows est remarquable et nous n'avons subi aucun ralentissement."
                     </p>
                 </div>
 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300 hidden lg:flex">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">William Smith</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">PDG</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden lg:flex">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">William Smith</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">PDG</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="William Smith" class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "Avoir un tableau de bord statistique nous permet d'analyser nos flux de matières premières avec une précision que nous n'avions pas auparavant. Un outil indispensable."
                     </p>
                 </div>
 
-                <div class="testimonial-card flex flex-col h-full bg-gradient-to-b from-[#151515] to-[#0a0a0a] border border-white/10 rounded-[20px] p-6 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-[0_8px_30px_-10px_rgba(221,75,37,0.3)] transition-all duration-300 hidden lg:flex">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="flex flex-col pr-4">
-                            <h4 class="text-white font-semibold text-[16px] leading-tight">Karim B.</h4>
-                            <p class="text-brand-textMuted text-[13px] mt-1">Technicien IT</p>
+                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden lg:flex">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex flex-col pr-4 overflow-hidden">
+                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Karim B.</h4>
+                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Technicien IT</p>
                         </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Karim B." class="w-[40px] h-[40px] rounded-full object-cover border border-white/10 shadow-sm shrink-0">
+                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
                     </div>
-                    <p class="text-white/80 text-[15px] leading-[1.6] text-left">
+                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
                         "Le déploiement est super léger, pas d'usine à gaz. La base de données locale nous garantit une sécurité totale de nos informations industrielles."
                     </p>
                 </div>
@@ -404,10 +405,10 @@
                     Tarifs
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Des plans adaptés à vos besoins</h2>
-                <p class="text-brand-textMuted text-lg mb-8">Choisissez l'offre qui correspond à la taille de votre site industriel.</p>
+                <p class="text-[rgba(255,255,255,0.65)] text-[16px] mb-8">Choisissez l'offre qui correspond à la taille de votre site industriel.</p>
 
                 <div class="flex items-center justify-center gap-4 text-sm font-bold text-white mb-16">
-                    <span class="text-brand-textMuted">Mensuel</span>
+                    <span class="text-[rgba(255,255,255,0.65)]">Mensuel</span>
                     <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
                         <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-[#121212] appearance-none cursor-pointer z-10 transition-all duration-300" checked/>
                         <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-[#333] cursor-pointer transition-colors duration-300"></label>
@@ -423,12 +424,12 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">Essentiel</h3>
-                    <p class="text-brand-textMuted text-sm h-10 mb-6">Idéal pour les petites installations avec un seul pont-bascule.</p>
+                    <p class="text-[rgba(255,255,255,0.65)] text-sm h-10 mb-6">Idéal pour les petites installations avec un seul pont-bascule.</p>
                     <div class="mb-8">
                         <span class="text-4xl font-black text-white">0 MAD</span>
                     </div>
                     <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
-                    <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                    <ul class="space-y-3 mb-8 text-sm text-[rgba(255,255,255,0.65)]">
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 1 Poste de pesée</li>
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Template ticket standard</li>
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 50 tickets / jour</li>
@@ -445,12 +446,12 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2">Professionnel</h3>
-                        <p class="text-brand-textMuted text-sm h-10 mb-6">Pour les entreprises ayant besoin d'un suivi détaillé et de rapports complets.</p>
+                        <p class="text-[rgba(255,255,255,0.65)] text-sm h-10 mb-6">Pour les entreprises ayant besoin d'un suivi détaillé et de rapports complets.</p>
                         <div class="mb-8">
-                            <span class="text-4xl font-black text-white">499 MAD</span><span class="text-brand-textMuted"> /mois</span>
+                            <span class="text-4xl font-black text-white">499 MAD</span><span class="text-[rgba(255,255,255,0.65)]"> /mois</span>
                         </div>
                         <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
-                        <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                        <ul class="space-y-3 mb-8 text-sm text-[rgba(255,255,255,0.65)]">
                             <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tout le plan Essentiel</li>
                             <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tickets illimités</li>
                             <li class="flex items-center gap-3 text-white"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Export Base de données (Excel)</li>
@@ -468,12 +469,12 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">Entreprise</h3>
-                    <p class="text-brand-textMuted text-sm h-10 mb-6">Pour les groupes industriels nécessitant du multi-sites et des intégrations.</p>
+                    <p class="text-[rgba(255,255,255,0.65)] text-sm h-10 mb-6">Pour les groupes industriels nécessitant du multi-sites et des intégrations.</p>
                     <div class="mb-8">
                         <span class="text-4xl font-black text-white">Sur devis</span>
                     </div>
                     <p class="text-xs font-bold text-white uppercase tracking-wider mb-4">Fonctionnalités :</p>
-                    <ul class="space-y-3 mb-8 text-sm text-brand-textMuted">
+                    <ul class="space-y-3 mb-8 text-sm text-[rgba(255,255,255,0.65)]">
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Tout le plan Pro</li>
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Multi-ponts & Multi-sites</li>
                         <li class="flex items-center gap-3"><svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> API & Intégration ERP</li>
@@ -493,7 +494,7 @@
                 
                 <div class="relative z-10">
                     <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Prêt à moderniser vos stations de pesage ?</h2>
-                    <p class="text-xl text-brand-textMuted mb-10 max-w-2xl mx-auto">Rejoignez les industries qui font confiance à Weighmaster pour la gestion quotidienne de leurs ponts-bascules.</p>
+                    <p class="text-[rgba(255,255,255,0.65)] text-xl mb-10 max-w-2xl mx-auto">Rejoignez les industries qui font confiance à Weighmaster pour la gestion quotidienne de leurs ponts-bascules.</p>
                     
                     <a href="#" class="inline-flex group relative bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white px-10 py-5 rounded-full font-extrabold text-lg shadow-[0_0_30px_-5px_rgba(221,75,37,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_0px_rgba(221,75,37,0.8)] hover:-translate-y-1 items-center justify-center gap-3 border border-white/20 z-20">
                         Contacter l'équipe
@@ -538,7 +539,7 @@
 
             document.querySelectorAll('.testimonial-card').forEach((card, index) => {
                 card.classList.add('reveal-card');
-                card.style.transitionDelay = `${index * 150}ms`;
+                card.style.transitionDelay = `${index * 100}ms`;
                 observer.observe(card);
             });
         });
