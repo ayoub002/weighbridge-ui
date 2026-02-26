@@ -54,6 +54,16 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(221, 75, 37, 0.8); }
         
         .tabular-nums { font-variant-numeric: tabular-nums; }
+
+        /* Cacher les flèches de l'input number pour un rendu propre (Saisie manuelle) */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 <body class="bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-900 via-brand-dark to-black min-h-screen text-brand-text font-sans overflow-hidden relative">
@@ -129,7 +139,7 @@
                     </div>
 
                     <div class="glass-panel p-1.5 pr-4 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white/10 transition-all">
-                        <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=DD4B25&color=FFFFFF&bold=true" class="w-10 h-10 rounded-full border-2 border-brand-orange/50">
+                        <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=DD4B25&color=FFFFFF&bold=true" class="w-10 h-10 rounded-full border-2 border-brand-orange/50" alt="Avatar">
                         <div class="text-right">
                             <p class="text-sm font-bold text-white leading-tight">S. Ayoub</p>
                             <p class="text-xs font-semibold text-brand-textMuted">Opérateur</p>
@@ -190,7 +200,6 @@
                             </div>
 
                             <div class="grid grid-cols-2 gap-6">
-                                
                                 <button class="relative overflow-hidden border-2 border-brand-orange/50 bg-brand-orange/10 hover:bg-brand-orange/20 text-brand-orange font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group shadow-[0_0_20px_rgba(221,75,37,0.15)] focus:outline-none focus:ring-4 focus:ring-brand-orange/30">
                                     <div class="bg-brand-orange/20 border border-brand-orange/30 p-3 rounded-xl group-hover:scale-110 transition-transform">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,26 +218,46 @@
                                     </div>
                                     Enregistrer
                                 </button>
-
                             </div>
 
-                            <div class="grid grid-cols-3 gap-6 mt-auto">
-                                <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 transition-all">
-                                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange transition-all"></div>
-                                    <span class="text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2">Poids d'entrée</span>
-                                    <span class="text-4xl font-black text-white tabular-nums">0.00</span>
+                            <div class="mt-auto">
+                                <div class="flex justify-end mb-2">
+                                    <button type="button" onclick="togglePeseeManuelle()" class="flex items-center gap-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-brand-textMuted hover:text-white px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                        Activer Saisie Manuelle
+                                    </button>
                                 </div>
-                                <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 transition-all">
-                                     <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange transition-all"></div>
-                                    <span class="text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2">Poids sortie</span>
-                                    <span class="text-4xl font-black text-white tabular-nums">0.00</span>
-                                </div>
-                                <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden bg-brand-orange/10 shadow-glow-orange/20 border-brand-orange/30">
-                                     <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange"></div>
-                                    <span class="text-xs font-bold text-brand-orange uppercase tracking-wider mb-2">Poids net</span>
-                                    <span class="text-4xl font-black text-brand-orange tabular-nums">0.00</span>
+
+                                <div class="grid grid-cols-3 gap-6">
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 focus-within:border-brand-orange transition-all">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange group-focus-within:bg-brand-orange transition-all"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-entree" class="text-xs font-bold text-brand-textMuted uppercase tracking-wider cursor-pointer">Poids d'entrée</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-entree" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-white tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-white/20" placeholder="0.00">
+                                    </div>
+
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 focus-within:border-brand-orange transition-all">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange group-focus-within:bg-brand-orange transition-all"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-sortie" class="text-xs font-bold text-brand-textMuted uppercase tracking-wider cursor-pointer">Poids sortie</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-sortie" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-white tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-white/20" placeholder="0.00">
+                                    </div>
+
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden bg-brand-orange/10 shadow-glow-orange/20 border-brand-orange/30 focus-within:border-brand-orange focus-within:shadow-glow-orange/40 transition-all group">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-net" class="text-xs font-bold text-brand-orange uppercase tracking-wider cursor-pointer">Poids net</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-net" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-brand-orange tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-brand-orange/30" placeholder="0.00">
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="col-span-5 flex flex-col gap-6 h-full">
@@ -333,7 +362,7 @@
                                 <div class="p-6 border-t border-white/10 flex justify-end flex-shrink-0">
                                       <button class="glass-panel hover:bg-red-500/20 text-red-400 hover:text-red-300 border-red-500/30 font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center gap-2">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                        Clear
+                                        Vider le formulaire
                                     </button>
                                 </div>
 
@@ -347,6 +376,7 @@
     </div>
 
     <script>
+        // --- 1. Gestion des onglets ---
         function switchTab(tabName) {
             const btnNew = document.getElementById('btn-tab-new');
             const btnList = document.getElementById('btn-tab-list');
@@ -376,6 +406,45 @@
                 contentList.classList.add('flex');
                 contentNew.classList.add('hidden');
                 contentNew.classList.remove('flex');
+            }
+        }
+
+        // --- 2. Gestion du mode de Saisie Manuelle ---
+        let isManualMode = false;
+
+        function togglePeseeManuelle() {
+            isManualMode = !isManualMode;
+            
+            const inputs = document.querySelectorAll('.input-poids');
+            const badges = document.querySelectorAll('.badge-manuel');
+            const btn = document.querySelector('button[onclick="togglePeseeManuelle()"]');
+
+            inputs.forEach(input => {
+                if (isManualMode) {
+                    input.removeAttribute('readonly');
+                    input.classList.remove('cursor-default');
+                    input.classList.add('cursor-text'); 
+                } else {
+                    input.setAttribute('readonly', 'true');
+                    input.classList.add('cursor-default');
+                    input.classList.remove('cursor-text');
+                }
+            });
+
+            badges.forEach(badge => {
+                if (isManualMode) {
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            });
+
+            if (isManualMode) {
+                btn.innerHTML = `<svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> <span class="text-brand-orange">Désactiver Saisie Manuelle</span>`;
+                btn.classList.add('border-brand-orange/50', 'bg-brand-orange/10');
+            } else {
+                btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Activer Saisie Manuelle`;
+                btn.classList.remove('border-brand-orange/50', 'bg-brand-orange/10');
             }
         }
     </script>
