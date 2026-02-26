@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weighmaster - Glassmorphism Dark/Orange</title>
+    <title>Mizano - Glassmorphism Dark/Orange</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
@@ -26,6 +26,7 @@
                         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
                         'glass-edge': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
                         'glow-orange': '0 0 25px -5px rgba(221, 75, 37, 0.6)',
+                        'glow-orange-btn': '0 0 30px -5px rgba(221, 75, 37, 0.6)',
                     },
                 }
             }
@@ -64,12 +65,7 @@
 
         <aside class="w-[260px] glass-panel-dark border-r border-white/5 flex flex-col h-full flex-shrink-0 relative z-20">
             <div class="h-24 flex items-center px-8">
-                <h2 class="text-xl font-black tracking-tight flex items-center gap-3">
-                    <div class="w-9 h-9 bg-gradient-to-br from-brand-orange to-orange-600 rounded-lg flex items-center justify-center shadow-glow-orange">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                    </div>
-                    WEIGH MASTER
-                </h2>
+                <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/MizanoLOGO%20LANDINGPAGE.png?raw=true" alt="Mizano Logo" class="h-8 object-contain">
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-3">
@@ -194,8 +190,9 @@
                             </div>
 
                             <div class="grid grid-cols-2 gap-6">
-                                <button class="glass-panel hover:bg-white/10 text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group">
-                                    <div class="bg-white/10 border border-white/10 p-3 rounded-xl group-hover:scale-110 transition-transform shadow-glass">
+                                
+                                <button class="relative overflow-hidden border-2 border-brand-orange/50 bg-brand-orange/10 hover:bg-brand-orange/20 text-brand-orange font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group shadow-[0_0_20px_rgba(221,75,37,0.15)] focus:outline-none focus:ring-4 focus:ring-brand-orange/30">
+                                    <div class="bg-brand-orange/20 border border-brand-orange/30 p-3 rounded-xl group-hover:scale-110 transition-transform">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -203,14 +200,16 @@
                                     </div>
                                     Lire le poids
                                 </button>
-                                <button class="glass-panel-dark hover:bg-black/60 text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group">
-                                    <div class="bg-black/30 border border-white/5 p-3 rounded-xl group-hover:scale-110 transition-transform shadow-glass">
+                                
+                                <button class="relative overflow-hidden bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group shadow-glow-orange-btn hover:shadow-[0_0_40px_0px_rgba(221,75,37,0.8)] border border-white/20 focus:outline-none focus:ring-4 focus:ring-brand-orange/50">
+                                    <div class="bg-white/20 border border-white/20 p-3 rounded-xl group-hover:scale-110 transition-transform">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                         </svg>
                                     </div>
                                     Enregistrer
                                 </button>
+
                             </div>
 
                             <div class="grid grid-cols-3 gap-6 mt-auto">
