@@ -1,475 +1,452 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mizano - Le Logiciel de Pont-Bascule Nouvelle Génération</title>
+    <title>Mizano - Glassmorphism Dark/Orange</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
                     colors: {
-                        brand: { orange: '#DD4B25', dark: '#0a0a0a', card: '#121212', text: '#FFFFFF', textMuted: '#9CA3AF', }
+                        brand: {
+                            orange: '#DD4B25',    
+                            dark: '#121212',      
+                            darker: '#0A0A0A',    
+                            text: '#FFFFFF',      
+                            textMuted: '#9CA3AF', 
+                        }
                     },
                     boxShadow: {
                         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-                        'glow-orange': '0 0 40px -10px rgba(221, 75, 37, 0.4)',
-                        'glow-orange-lg': '0 0 100px -20px rgba(221, 75, 37, 0.4)',
+                        'glass-edge': 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                        'glow-orange': '0 0 25px -5px rgba(221, 75, 37, 0.6)',
+                        'glow-orange-btn': '0 0 30px -5px rgba(221, 75, 37, 0.6)',
                     },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; }
-        .bg-grid-pattern { background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E"); }
-        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-card { background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
-        .text-gradient-orange { background: linear-gradient(135deg, #DD4B25 0%, #ff7a45 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .badge-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(221, 75, 37, 0.1); border: 1px solid rgba(221, 75, 37, 0.2); color: #DD4B25; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-        
-        /* Toggle Switch Custom */
-        .toggle-checkbox:checked { right: 0; border-color: #DD4B25; }
-        .toggle-checkbox:checked + .toggle-label { background-color: #DD4B25; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
 
-        /* Animation Scroll Reveal */
-        .reveal-card { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
+        .glass-panel-dark {
+             background: rgba(0, 0, 0, 0.4);
+             backdrop-filter: blur(16px);
+             -webkit-backdrop-filter: blur(16px);
+             border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(221, 75, 37, 0.8); }
+        
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+
+        /* Cacher les flèches de l'input number pour un rendu propre (Saisie manuelle) */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
-<body class="text-brand-text font-sans overflow-x-hidden selection:bg-brand-orange selection:text-white relative">
+<body class="bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-900 via-brand-dark to-black min-h-screen text-brand-text font-sans overflow-hidden relative">
 
-    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+    <div class="fixed top-[-20%] right-[0%] w-[600px] h-[600px] bg-brand-orange/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-panel py-4">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            
-            <div class="flex items-center">
-                <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/MizanoLOGO%20LANDINGPAGE.png?raw=true" alt="Mizano Logo" class="h-8 md:h-10 w-auto object-contain">
+    <div class="flex h-screen relative z-10">
+
+        <aside class="w-[260px] glass-panel-dark border-r border-white/5 flex flex-col h-full flex-shrink-0 relative z-20">
+            <div class="h-24 flex items-center px-8">
+                <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/MizanoLOGO%20LANDINGPAGE.png?raw=true" alt="Mizano Logo" class="h-8 object-contain">
             </div>
 
-            <div class="hidden md:flex items-center gap-8 font-semibold text-sm z-20">
-                <a href="#features" class="text-brand-textMuted hover:text-white transition-colors">Fonctionnalités</a>
-                <a href="#temoignages" class="text-brand-textMuted hover:text-white transition-colors">Témoignages</a>
-                <a href="#tarifs" class="text-brand-textMuted hover:text-white transition-colors">Tarifs</a>
-            </div>
-            <div class="flex items-center gap-4 z-20">
-                <a href="index.html" class="hidden md:block text-brand-textMuted hover:text-white font-bold text-sm transition-colors">Se connecter</a>
-                <a href="#" class="group relative bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_-5px_rgba(221,75,37,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_0px_rgba(221,75,37,0.8)] hover:-translate-y-0.5 flex items-center gap-2 border border-white/20">
-                    Demander une démo
-                    <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            <nav class="flex-1 px-4 py-6 space-y-3">
+                <a href="index.html" class="flex items-center gap-4 px-5 py-3.5 bg-brand-orange/80 backdrop-blur-md border border-white/20 shadow-glow-orange text-white rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="text-[15px]">Bascule</span>
                 </a>
-            </div>
-        </div>
-    </nav>
-
-    <section class="relative pt-40 pb-20 px-6 z-10 flex flex-col items-center text-center overflow-visible">
-        
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDQwdjQwSDBWMHptMzkgMzlWMUgxdjM4aDM4eiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjAzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-80 pointer-events-none z-0" style="-webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, black 10%, transparent 80%); mask-image: radial-gradient(ellipse 70% 80% at 50% 20%, black 10%, transparent 80%);"></div>
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-orange/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
-        <div class="absolute top-40 left-[10%] md:left-[20%] flex items-center justify-center opacity-80 z-0 animate-pulse">
-            <div class="absolute w-16 h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent blur-[1px]"></div>
-            <div class="absolute h-16 w-[2px] bg-gradient-to-b from-transparent via-brand-orange to-transparent blur-[1px]"></div>
-            <div class="absolute w-3 h-3 bg-white/80 rounded-full blur-[3px]"></div>
-        </div>
-        <div class="absolute top-20 right-[15%] md:right-[25%] flex items-center justify-center opacity-50 z-0 animate-pulse scale-75" style="animation-delay: 1s;">
-            <div class="absolute w-16 h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent blur-[1px]"></div>
-            <div class="absolute h-16 w-[2px] bg-gradient-to-b from-transparent via-brand-orange to-transparent blur-[1px]"></div>
-            <div class="absolute w-3 h-3 bg-white/80 rounded-full blur-[3px]"></div>
-        </div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <div class="badge-pill mb-8">
-                <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
-                Lancement de la v2.0
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter mb-6">
-                Le pesage industriel,<br>
-                <span class="text-gradient-orange">réinventé.</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl text-brand-textMuted font-medium leading-relaxed max-w-2xl mb-10">
-                Mizano est le logiciel CRM de pont-bascule le plus élégant et performant du marché. Capturez, gérez et exportez vos pesées avec une interface conçue pour l'efficacité.
-            </p>
-            
-            <div class="flex flex-wrap items-center justify-center gap-4 relative">
-                <a href="index.html" class="group relative bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white px-8 py-4 rounded-full font-extrabold text-lg shadow-[0_0_30px_-5px_rgba(221,75,37,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_0px_rgba(221,75,37,0.8)] hover:-translate-y-1 flex items-center gap-3 border border-white/20 z-20">
-                    Voir l'application en direct
-                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <a href="parametres.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-[15px]">Paramètres</span>
                 </a>
-            </div>
-        </div>
+                <a href="historique.html" class="flex items-center gap-4 px-5 py-3.5 text-brand-textMuted hover:bg-white/5 hover:text-white rounded-xl font-semibold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-[15px]">Historique</span>
+                </a>
+            </nav>
 
-        <div class="w-full max-w-6xl mx-auto mt-20 relative z-10">
-            <div class="absolute -top-[1px] left-1/2 -translate-x-1/2 w-4/5 max-w-3xl flex flex-col items-center z-30">
-                <div class="w-full h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-90"></div>
-                <div class="absolute top-0 w-2/3 h-[40px] bg-brand-orange/50 blur-[25px] -translate-y-1/2 pointer-events-none"></div>
-            </div>
-
-            <div class="glass-card p-2 md:p-4 shadow-2xl relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
-                
-                <div class="bg-brand-card rounded-xl border border-white/5 overflow-hidden flex flex-col relative z-20">
-                    <div class="h-10 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+            <div class="p-6 mt-auto">
+                <div class="glass-panel-dark rounded-2xl p-4 mb-4 relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-20 h-20 bg-brand-orange/20 rounded-full blur-xl pointer-events-none"></div>
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3 text-brand-orange border border-white/10">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     </div>
-                    <div class="p-8 md:p-12 relative">
-                         <div class="bg-gradient-to-br from-brand-orange/90 to-orange-600 rounded-3xl p-10 shadow-glow-orange flex items-center justify-center mb-8 relative overflow-hidden border border-orange-400/50 max-w-3xl mx-auto">
-                            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
-                            <span class="text-7xl md:text-9xl font-black text-white tabular-nums drop-shadow-xl relative z-10 tracking-tighter">2500<span class="text-4xl opacity-80 ml-4 font-bold">kg</span></span>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                            <div class="glass-panel p-4 rounded-xl"><div class="h-2 w-12 bg-brand-textMuted/30 rounded mb-2"></div><div class="h-4 w-24 bg-white/80 rounded"></div></div>
-                            <div class="glass-panel p-4 rounded-xl"><div class="h-2 w-12 bg-brand-textMuted/30 rounded mb-2"></div><div class="h-4 w-24 bg-white/80 rounded"></div></div>
-                            <div class="glass-panel p-4 rounded-xl"><div class="h-2 w-12 bg-brand-textMuted/30 rounded mb-2"></div><div class="h-4 w-24 bg-brand-orange rounded"></div></div>
-                            <div class="glass-panel p-4 rounded-xl"><div class="h-2 w-12 bg-brand-textMuted/30 rounded mb-2"></div><div class="h-4 w-24 bg-white/80 rounded"></div></div>
-                        </div>
-                    </div>
+                    <p class="text-xs font-bold text-center text-brand-text mb-3">Besoin d'une copie ?</p>
+                    <button class="w-full bg-brand-orange hover:bg-orange-600 text-white py-2.5 rounded-xl text-sm font-bold transition-all shadow-glow-orange">Export data</button>
                 </div>
+                <button class="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-xl font-bold transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Se déconnecter
+                </button>
             </div>
-        </div>
-    </section>
+        </aside>
 
-    <section class="py-10 border-y border-white/5 bg-white/[0.01] relative z-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale">
-            <span class="text-xl font-black tracking-widest text-white">SENSOCAR</span>
-            <span class="text-xl font-black tracking-widest text-white">METTLER TOLEDO</span>
-            <span class="text-xl font-black tracking-widest text-white">PRECIAMOLEN</span>
-        </div>
-    </section>
-
-    <section id="features" class="pt-32 pb-16 relative z-10">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <div class="badge-pill mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                Fonctionnalités
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">La puissance sous le verre.</h2>
-            <p class="text-brand-textMuted text-lg md:text-xl leading-relaxed">
-                Découvrez comment nos outils conçus avec précision peuvent transformer votre productivité et simplifier vos opérations quotidiennes.
-            </p>
-        </div>
-    </section>
-
-    <section class="py-16 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-            <div class="flex-1 space-y-6">
-                <div class="badge-pill mb-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    Rapidité Absolue
-                </div>
-                <h3 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                    Une pesée plus <span class="text-brand-orange">rapide</span>.<br>
-                    Plus <span class="text-brand-orange">fiable</span>.<br>
-                    Plus <span class="text-brand-orange">intelligente</span>.
-                </h3>
-                <p class="text-brand-textMuted text-lg leading-relaxed">
-                    Notre plateforme SaaS vous aide à gérer vos pesées de camions et de charges sans complexité : enregistrement automatique, suivi des mouvements, rapports instantanés et contrôle des anomalies.
-                </p>
-                <ul class="space-y-4 pt-4">
-                    <li class="flex items-start gap-4 text-brand-textMuted font-medium">
-                        <div class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                        Connexion directe et temps réel au Pont-Bascule (SENSOCAR, etc).
-                    </li>
-                    <li class="flex items-start gap-4 text-brand-textMuted font-medium">
-                        <div class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                        Détection automatique du poids stable pour éviter les erreurs.
-                    </li>
-                </ul>
-            </div>
-            <div class="flex-1 w-full relative">
-                <div class="absolute inset-0 bg-brand-orange/20 blur-[80px] rounded-full"></div>
-                <img src="freepik__3d-an-orange-shipping-truck-and-container-with-whi__70176.png" alt="Mizano Truck 3D" class="w-full h-auto object-contain drop-shadow-2xl animate-float relative z-10">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 relative z-10">
-        <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent -z-10"></div>
-        <div class="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent -z-10"></div>
-
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row-reverse items-center gap-16">
-            <div class="flex-1 space-y-6">
-                <div class="badge-pill mb-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    Design & Ergonomie
-                </div>
-                <h3 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                    Interface <span class="text-brand-orange">Glassmorphism</span>
-                </h3>
-                <p class="text-brand-textMuted text-lg leading-relaxed">
-                    Une ergonomie pensée pour les opérateurs. Les données sont claires, les contrastes sont élevés, et la fatigue visuelle est réduite au minimum.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                    <div class="glass-card p-5">
-                        <h4 class="text-white font-bold mb-1 flex items-center gap-2">🌙 Mode Sombre</h4>
-                        <p class="text-brand-textMuted text-sm">Idéal pour la pesée de nuit ou dans les locaux peu éclairés.</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-3xl border border-slate-200">
-                        <h4 class="text-slate-900 font-bold mb-1 flex items-center gap-2">☀️ Mode Clair</h4>
-                        <p class="text-slate-500 text-sm">Contraste maximum pour un affichage en plein soleil.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-1 w-full relative">
-                <div class="absolute inset-0 bg-white/5 blur-[80px] rounded-full"></div>
-                <div class="glass-card p-4 relative z-10 animate-float-delayed shadow-2xl border-white/10 overflow-hidden group">
-                    <div class="bg-brand-card rounded-xl border border-white/5 p-6 flex flex-col gap-4">
-                        <div class="flex justify-between items-center mb-4 pb-4 border-b border-white/5">
-                            <span class="font-bold text-white">Tickets récents</span>
-                            <span class="text-brand-orange text-sm font-bold">Voir tout</span>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-4 flex items-center justify-between border border-brand-orange/30 group-hover:bg-brand-orange/10 transition-colors">
-                            <div><div class="text-white font-bold mb-1">Ticket #17</div><div class="text-brand-textMuted text-xs">CLIENT 1 • TEST P 1</div></div>
-                            <div class="text-right"><div class="text-brand-orange font-black text-lg">20 000 kg</div><div class="text-xs text-brand-textMuted">Ouvert 2 j 0 h</div></div>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-4 flex items-center justify-between border border-transparent">
-                            <div><div class="text-white font-bold mb-1">Ticket #12</div><div class="text-brand-textMuted text-xs">TEST C 1 • TEST P 1</div></div>
-                            <div class="text-right"><div class="text-white font-black text-lg">14 640 kg</div><div class="text-xs text-brand-textMuted">Ouvert 881 j</div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-            <div class="flex-1 space-y-6">
-                <div class="badge-pill mb-2 border-red-500/30 text-red-400 bg-red-500/10">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    Sécurité Infaillible
-                </div>
-                <h3 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                    Protection <span class="text-brand-orange">Anti-Fraude</span> intégrée.
-                </h3>
-                <p class="text-brand-textMuted text-lg leading-relaxed">
-                    Sécurisez vos revenus. Mizano analyse en continu la courbe de pesée et bloque automatiquement la validation du ticket en cas de comportement suspect ou d'instabilité anormale sur le pont.
-                </p>
-                <ul class="space-y-4 pt-4">
-                    <li class="flex items-start gap-4 text-brand-textMuted font-medium">
-                        <div class="w-6 h-6 rounded bg-red-500/20 text-red-500 flex items-center justify-center shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div>
-                        Détection automatique des chutes de poids soudaines.
-                    </li>
-                    <li class="flex items-start gap-4 text-brand-textMuted font-medium">
-                        <div class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
-                        Journal d'audit inaltérable empêchant la modification frauduleuse.
-                    </li>
-                </ul>
-            </div>
+        <main class="flex-1 flex flex-col relative overflow-hidden">
             
-            <div class="flex-1 w-full relative">
-                <div class="absolute inset-0 bg-red-600/10 blur-[80px] rounded-full"></div>
+            <header class="h-24 flex items-center justify-between px-8 z-10 flex-shrink-0">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                        Bonjour, S. Ayoub 
+                        <span class="text-2xl">👋</span>
+                    </h1>
+                    <p class="text-brand-textMuted font-medium text-sm mt-1 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse shadow-glow-orange"></span>
+                        Pesée en cours : Action requise pour capturer l'entrée
+                    </p>
+                </div>
                 
-                <div class="glass-card p-4 relative z-10 animate-float shadow-2xl border-white/10 overflow-hidden group">
-                    <div class="bg-brand-card rounded-xl border border-white/5 p-6 flex flex-col gap-4 relative overflow-hidden">
-                        
-                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-brand-orange"></div>
-                        
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                Moniteur de Stabilité
+                <div class="flex items-center gap-4">
+                    <div class="glass-panel px-2 py-1.5 rounded-full flex items-center gap-2">
+                         <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
-                            <span class="bg-red-500/20 text-red-500 border border-red-500/30 text-xs font-bold px-2 py-1 rounded">Alerte</span>
+                            <span class="text-xs font-bold">Connecté</span>
                         </div>
+                        <div class="flex items-center gap-2 px-3 py-1.5 bg-brand-orange/20 border border-brand-orange/30 rounded-full text-orange-300">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            <span class="text-xs font-bold">Entrée</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-1.5 pr-4 rounded-full flex items-center gap-3 cursor-pointer hover:bg-white/10 transition-all">
+                        <img src="https://ui-avatars.com/api/?name=S+Ayoub&background=DD4B25&color=FFFFFF&bold=true" class="w-10 h-10 rounded-full border-2 border-brand-orange/50" alt="Avatar">
+                        <div class="text-right">
+                            <p class="text-sm font-bold text-white leading-tight">S. Ayoub</p>
+                            <p class="text-xs font-semibold text-brand-textMuted">Opérateur</p>
+                        </div>
+                        <svg class="w-5 h-5 text-brand-textMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto px-8 pb-8 custom-scrollbar relative z-10">
+                <div class="max-w-[1600px] mx-auto flex flex-col gap-6 h-full">
+                    
+                    <div class="glass-panel p-2 rounded-full flex items-center justify-between">
+                        <div class="flex-1 flex items-center justify-between bg-brand-orange/80 backdrop-blur-md border border-white/20 shadow-glow-orange rounded-full px-2 py-2 mr-2 relative z-10">
+                             <span class="text-sm font-bold text-white ml-4">1. CAPTURER ENTRÉE</span>
+                             <div class="w-8 h-8 rounded-full bg-white text-brand-orange flex items-center justify-center font-black shadow-sm">1</div>
+                        </div>
+                        <div class="flex-1 flex items-center justify-between px-6 py-3 opacity-50">
+                             <span class="text-sm font-bold text-brand-textMuted">2. COMPLÉTER INFOS</span>
+                             <div class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-brand-textMuted flex items-center justify-center font-bold">2</div>
+                        </div>
+                         <div class="flex-1 flex items-center justify-between px-6 py-3 opacity-50">
+                             <span class="text-sm font-bold text-brand-textMuted">3. SORTIE & IMPRIMER</span>
+                             <div class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-brand-textMuted flex items-center justify-center font-bold">3</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-6 flex-1 min-h-[600px]">
                         
-                        <div class="h-28 w-full flex items-end gap-1 mb-2 opacity-90 border-b border-white/10 pb-1">
-                            <div class="w-1/6 h-[80%] bg-white/20 rounded-t-sm"></div>
-                            <div class="w-1/6 h-[85%] bg-white/20 rounded-t-sm"></div>
-                            <div class="w-1/6 h-[82%] bg-brand-orange/60 rounded-t-sm shadow-[0_0_15px_rgba(221,75,37,0.5)]"></div>
-                            <div class="w-1/6 h-[35%] bg-red-500/80 rounded-t-sm shadow-[0_0_15px_rgba(239,68,68,0.5)] relative">
-                                <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-red-400">-75kg</div>
-                            </div> 
-                            <div class="w-1/6 h-[37%] bg-red-500/60 rounded-t-sm"></div>
-                            <div class="w-1/6 h-[36%] bg-red-500/60 rounded-t-sm"></div>
-                        </div>
+                        <div class="col-span-7 flex flex-col gap-6">
+                            
+                            <div class="rounded-[2.5rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px] bg-gradient-to-br from-brand-orange/90 via-orange-600/80 to-brand-dark/80 backdrop-blur-[20px] border border-white/20 shadow-glow-orange/50">
+                                <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.2),_transparent_50%)] pointer-events-none"></div>
 
-                        <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-4 flex flex-col gap-1">
-                            <div class="text-red-400 font-bold text-sm flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                                Variation suspecte détectée
+                                <div class="flex justify-between items-start relative z-10">
+                                    <div class="glass-panel px-4 py-2 rounded-xl">
+                                        <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">Poids actuel (kg)</h3>
+                                    </div>
+                                    <div class="glass-panel px-4 py-2 rounded-xl flex items-center gap-3">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                                        <div>
+                                            <p class="text-white/70 text-[10px] font-bold uppercase tracking-wider">Ticket N°</p>
+                                            <p class="text-white text-xl font-black leading-none">17</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1 flex items-center justify-center py-6 relative z-10">
+                                    <span class="text-[150px] font-black text-white leading-none tracking-tighter tabular-nums drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">2500</span>
+                                </div>
+
+                                <div class="flex justify-end mt-4 relative z-10">
+                                    <button class="glass-panel hover:bg-white/20 text-white font-extrabold py-3 px-6 rounded-xl text-lg transition-transform hover:-translate-y-1 flex items-center gap-3">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                        Ajouter Tare
+                                    </button>
+                                </div>
                             </div>
-                            <div class="text-brand-textMuted text-xs">Validation automatique bloquée. L'opérateur doit vérifier le positionnement du camion.</div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <button class="relative overflow-hidden border-2 border-brand-orange/50 bg-brand-orange/10 hover:bg-brand-orange/20 text-brand-orange font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group shadow-[0_0_20px_rgba(221,75,37,0.15)] focus:outline-none focus:ring-4 focus:ring-brand-orange/30">
+                                    <div class="bg-brand-orange/20 border border-brand-orange/30 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </div>
+                                    Lire le poids
+                                </button>
+                                
+                                <button class="relative overflow-hidden bg-gradient-to-r from-[#ff7a45] to-brand-orange text-white font-extrabold py-5 px-6 rounded-[1.5rem] text-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-4 group shadow-glow-orange-btn hover:shadow-[0_0_40px_0px_rgba(221,75,37,0.8)] border border-white/20 focus:outline-none focus:ring-4 focus:ring-brand-orange/50">
+                                    <div class="bg-white/20 border border-white/20 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                    </div>
+                                    Enregistrer
+                                </button>
+                            </div>
+
+                            <div class="mt-auto">
+                                <div class="flex justify-end mb-2">
+                                    <button type="button" onclick="togglePeseeManuelle()" class="flex items-center gap-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-brand-textMuted hover:text-white px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                        Activer Saisie Manuelle
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-6">
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 focus-within:border-brand-orange transition-all">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange group-focus-within:bg-brand-orange transition-all"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-entree" class="text-xs font-bold text-brand-textMuted uppercase tracking-wider cursor-pointer">Poids d'entrée</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-entree" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-white tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-white/20" placeholder="0.00">
+                                    </div>
+
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden group hover:border-brand-orange/50 focus-within:border-brand-orange transition-all">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/50 group-hover:bg-brand-orange group-focus-within:bg-brand-orange transition-all"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-sortie" class="text-xs font-bold text-brand-textMuted uppercase tracking-wider cursor-pointer">Poids sortie</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-sortie" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-white tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-white/20" placeholder="0.00">
+                                    </div>
+
+                                    <div class="glass-panel rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden bg-brand-orange/10 shadow-glow-orange/20 border-brand-orange/30 focus-within:border-brand-orange focus-within:shadow-glow-orange/40 transition-all group">
+                                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange"></div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <label for="poids-net" class="text-xs font-bold text-brand-orange uppercase tracking-wider cursor-pointer">Poids net</label>
+                                            <span class="badge-manuel hidden bg-brand-orange/20 text-brand-orange border border-brand-orange/30 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Manuel</span>
+                                        </div>
+                                        <input type="number" id="poids-net" value="0.00" readonly class="input-poids w-full bg-transparent border-none p-0 text-4xl font-black text-brand-orange tabular-nums outline-none focus:ring-0 cursor-default transition-colors placeholder-brand-orange/30" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
+                        <div class="col-span-5 flex flex-col gap-6 h-full">
+                            
+                            <div class="glass-panel rounded-[2.5rem] flex flex-col flex-1 overflow-hidden relative">
+                                
+                                <div class="p-6 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+                                    <div class="glass-panel-dark p-1 rounded-2xl flex inline-flex">
+                                        <button onclick="switchTab('new')" id="btn-tab-new" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all text-brand-textMuted hover:text-white bg-transparent">
+                                            Ajouter une pesée
+                                        </button>
+                                        <button onclick="switchTab('list')" id="btn-tab-list" class="px-5 py-2.5 rounded-xl text-sm transition-all bg-brand-orange shadow-glow-orange text-white font-bold">
+                                            Pesées en cours
+                                        </button>
+                                    </div>
+                                    <div class="glass-panel px-4 py-2 rounded-xl flex items-center gap-2 text-xs font-bold text-white">
+                                        <span class="w-2 h-2 rounded-full bg-brand-orange shadow-glow-orange"></span>
+                                        4 ouverts
+                                    </div>
+                                </div>
+
+                                <div id="content-tab-list" class="flex flex-col flex-1 overflow-hidden">
+                                    <div class="p-6 flex-shrink-0 pb-2">
+                                        <div class="relative">
+                                            <input type="text" class="w-full glass-panel-dark rounded-2xl py-4 pl-12 pr-4 text-sm font-semibold focus:outline-none focus:border-brand-orange/50 transition-all placeholder-brand-textMuted text-white" placeholder="Recherche rapide...">
+                                            <svg class="w-5 h-5 text-brand-textMuted absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-4">
+                                        <div class="glass-panel bg-brand-orange/10 border-brand-orange/40 shadow-glow-orange/20 rounded-[1.5rem] p-5 transition-all cursor-pointer relative overflow-hidden">
+                                            <div class="flex justify-between items-center mb-4">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-10 h-10 glass-panel bg-brand-orange/20 rounded-xl flex items-center justify-center text-brand-orange">
+                                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-white">Ticket #17</h4>
+                                                        <span class="text-xs font-semibold text-brand-textMuted">22/02/2026 • 21h 6m</span>
+                                                    </div>
+                                                </div>
+                                                <span class="bg-brand-orange text-white shadow-glow-orange text-xs font-bold px-3 py-1.5 rounded-lg">20 000 kg</span>
+                                            </div>
+                                            <div class="flex items-center gap-2 mb-4 glass-panel-dark p-3 rounded-xl">
+                                                <span class="font-extrabold text-white text-sm bg-white/10 px-2 py-1 rounded-md border border-white/10">ASD515</span>
+                                                <span class="text-xs text-brand-textMuted font-medium">Chauffeur non défini</span>
+                                            </div>
+                                            <button class="w-full text-sm font-bold text-white bg-brand-orange hover:bg-orange-600 py-3 rounded-xl transition-all shadow-glow-orange">
+                                                Continuer la pesée
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="glass-panel hover:bg-white/5 rounded-[1.5rem] p-5 transition-all cursor-pointer group">
+                                            <div class="flex justify-between items-center mb-4">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-10 h-10 glass-panel-dark rounded-xl flex items-center justify-center text-brand-textMuted group-hover:text-white transition-colors">
+                                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-white">Ticket #12</h4>
+                                                        <span class="text-xs font-semibold text-brand-textMuted">26/09/2023 • 880j 0h</span>
+                                                    </div>
+                                                </div>
+                                                <span class="glass-panel px-3 py-1.5 rounded-lg text-xs font-bold text-white">14 640 kg</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-extrabold text-white text-sm glass-panel-dark px-2 py-1 rounded-md">2468A7</span>
+                                                <span class="text-xs text-brand-textMuted font-medium">Chauffeur non défini</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="content-tab-new" class="hidden flex-col flex-1 overflow-y-auto p-8 custom-scrollbar">
+                                    <form class="space-y-5">
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">N° Matricule <span class="text-brand-orange">*</span></label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-black/20 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-white text-sm placeholder-white/20" placeholder="Ex: 12345-A-1">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Chauffeur</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-black/20 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-white text-sm placeholder-white/20" placeholder="Nom du chauffeur">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Produit</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-black/20 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-white text-sm placeholder-white/20" placeholder="Type de produit">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-brand-textMuted uppercase tracking-wider mb-2 ml-1">Client</label>
+                                            <input type="text" class="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-black/20 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/50 outline-none transition-all font-semibold text-white text-sm placeholder-white/20" placeholder="Nom du client">
+                                        </div>
+                                        
+                                        <div class="pt-4 mt-2 border-t border-white/10">
+                                            <button type="button" class="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 rounded-xl text-sm shadow-glow-orange transition-all flex items-center justify-center gap-2">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                                                Créer la pesée
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="p-6 border-t border-white/10 flex justify-end flex-shrink-0">
+                                      <button class="glass-panel hover:bg-red-500/20 text-red-400 hover:text-red-300 border-red-500/30 font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        Vider le formulaire
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
-    <section class="py-24 relative z-10">
-        <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent -z-10"></div>
-        <div class="absolute top-0 right-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent -z-10"></div>
+    <script>
+        // --- 1. Gestion des onglets ---
+        function switchTab(tabName) {
+            const btnNew = document.getElementById('btn-tab-new');
+            const btnList = document.getElementById('btn-tab-list');
+            const contentNew = document.getElementById('content-tab-new');
+            const contentList = document.getElementById('content-tab-list');
 
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row-reverse items-center gap-16">
-            <div class="flex-1 space-y-6">
-                <div class="badge-pill mb-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-                    Gestion & Exports
-                </div>
-                <h3 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                    Base de données <span class="text-brand-orange">CRM</span>
-                </h3>
-                <p class="text-brand-textMuted text-lg leading-relaxed">
-                    Gérez vos clients, transporteurs, chauffeurs et produits avec une facilité déconcertante depuis les paramètres. Retrouvez n'importe quel ticket en une seconde et exportez toute votre comptabilité en Excel en un seul clic.
-                </p>
-                <a href="historique.html" class="group inline-flex items-center gap-2 text-white font-bold pb-1 border-b-2 border-brand-orange hover:text-brand-orange transition-colors mt-4">
-                    Voir la page Historique
-                    <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </div>
-            <div class="flex-1 w-full relative">
-                <div class="absolute inset-0 bg-emerald-500/10 blur-[80px] rounded-full"></div>
-                <div class="grid grid-cols-2 gap-4 relative z-10 animate-float">
-                    <div class="glass-card p-6 border-white/10 flex flex-col items-center justify-center text-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-brand-textMuted"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
-                        <span class="font-bold text-white">Gestion Clients</span>
-                    </div>
-                    <div class="glass-card p-6 border-white/10 flex flex-col items-center justify-center text-center gap-3 mt-8">
-                        <div class="w-12 h-12 rounded-full bg-brand-orange/20 flex items-center justify-center text-brand-orange"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></div>
-                        <span class="font-bold text-white">Export Excel</span>
-                    </div>
-                    <div class="glass-card p-6 border-white/10 flex flex-col items-center justify-center text-center gap-3 -mt-8">
-                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-brand-textMuted"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg></div>
-                        <span class="font-bold text-white">Catalogue Produits</span>
-                    </div>
-                    <div class="glass-card p-6 border-white/10 flex flex-col items-center justify-center text-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-brand-textMuted"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
-                        <span class="font-bold text-white">Statistiques</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            const activeClassesBtn = ['bg-brand-orange', 'shadow-glow-orange', 'text-white'];
+            const inactiveClassesBtn = ['text-brand-textMuted', 'hover:text-white', 'bg-transparent'];
 
-    <section id="temoignages" class="py-[96px] relative overflow-hidden border-t border-white/5 z-10">
-        
-        <div class="absolute left-[-10%] top-0 w-[35%] h-full pointer-events-none z-0" style="background: radial-gradient(circle at left center, rgba(221,75,37,0.18), transparent 70%); filter: blur(60px);"></div>
-        <div class="absolute right-[-10%] top-0 w-[35%] h-full pointer-events-none z-0" style="background: radial-gradient(circle at right center, rgba(221,75,37,0.18), transparent 70%); filter: blur(60px);"></div>
+            if (tabName === 'new') {
+                btnNew.classList.remove(...inactiveClassesBtn);
+                btnNew.classList.add(...activeClassesBtn);
+                btnList.classList.remove(...activeClassesBtn);
+                btnList.classList.add(...inactiveClassesBtn);
 
-        <div class="max-w-[1280px] mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 testimonial-card">
-                <div class="badge-pill mb-4">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                    Témoignages
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Ce que disent nos utilisateurs</h2>
-                <p class="text-[rgba(255,255,255,0.65)] text-[16px] max-w-2xl mx-auto">Découvrez l'avis des professionnels qui utilisent Mizano au quotidien.</p>
-            </div>
+                contentNew.classList.remove('hidden');
+                contentNew.classList.add('flex');
+                contentList.classList.add('hidden');
+                contentList.classList.remove('flex');
+            } else {
+                btnList.classList.remove(...inactiveClassesBtn);
+                btnList.classList.add(...activeClassesBtn);
+                btnNew.classList.remove(...activeClassesBtn);
+                btnNew.classList.add(...inactiveClassesBtn);
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[28px] items-stretch">
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">David Miller</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Directeur Logistique</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "Ce logiciel a complètement transformé notre gestion des camions. L'interface est claire, l'acquisition du poids est instantanée et les rapports nous font gagner un temps fou."
-                    </p>
-                </div>
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Sophia Lee</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Responsable Facturation</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "L'export direct de la base de données vers Excel est la fonctionnalité que j'attendais. Je peux suivre les produits et les clients sans aucune erreur de saisie ou de perte de données."
-                    </p>
-                </div>
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">James Anderson</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Opérateur Pont-Bascule</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "Le mode sombre est parfait pour mes gardes de nuit. Le système est tellement intuitif que je n'ai même pas eu besoin de formation pour générer mes premiers tickets avec l'application."
-                    </p>
-                </div>
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden md:flex">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Emma Lopez</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Chef de Carrière</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "L'intégration avec notre pont SENSOCAR s'est faite en quelques clics. La stabilité du logiciel sur Windows est remarquable et nous n'avons subi aucun ralentissement."
-                    </p>
-                </div>
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden lg:flex">
-                    <div class="flex Start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">William Smith</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">PDG</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1682296067-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "Avoir un tableau de bord statistique nous permet d'analyser nos flux de matières premières avec une précision que nous n'avions pas auparavant. Un outil indispensable."
-                    </p>
-                </div>
-                <div class="testimonial-card flex flex-col justify-start h-full min-h-[190px] bg-gradient-to-b from-[#14161B] to-[#0D0F13] border border-[rgba(255,255,255,0.08)] rounded-[18px] p-[24px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(255,140,40,0.35)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] group hidden lg:flex">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex flex-col pr-4 overflow-hidden">
-                            <h4 class="text-[#FFFFFF] font-semibold text-[16px] leading-tight line-clamp-1">Karim B.</h4>
-                            <p class="text-[rgba(255,255,255,0.65)] text-[13px] mt-0.5 line-clamp-1">Technicien IT</p>
-                        </div>
-                        <img src="https://github.com/ayoub002/weighbridge-ui/blob/main/istockphoto-1317804578-612x612.jpg?raw=true" alt="Avatar" class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-                    </div>
-                    <p class="text-[rgba(255,255,255,0.65)] text-[15px] leading-[1.6] text-left line-clamp-4 mt-auto mb-auto">
-                        "Le déploiement est super léger, pas d'usine à gaz. La base de données locale nous garantit une sécurité totale de nos informations industrielles."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+                contentList.classList.remove('hidden');
+                contentList.classList.add('flex');
+                contentNew.classList.add('hidden');
+                contentNew.classList.remove('flex');
+            }
+        }
 
-    <section id="tarifs" class="pt-24 pb-32 relative z-10 overflow-hidden">
-        
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-[120%] h-[150px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent blur-[80px] -rotate-[25deg] pointer-events-none z-0"></div>
+        // --- 2. Gestion du mode de Saisie Manuelle ---
+        let isManualMode = false;
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12">
-                <div class="badge-pill mb-4">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    Tarifs
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Des plans adaptés à vos besoins</h2>
-                <p class="text-[rgba(255,255,255,0.65)] text-[16px] mb-8">Choisissez l'offre qui correspond à la taille de votre site industriel.</p>
+        function togglePeseeManuelle() {
+            isManualMode = !isManualMode;
+            
+            const inputs = document.querySelectorAll('.input-poids');
+            const badges = document.querySelectorAll('.badge-manuel');
+            const btn = document.querySelector('button[onclick="togglePeseeManuelle()"]');
 
-                <div class="flex items-center justify-center gap-4 text-sm font-bold text-white mb-16">
-                    <span class="text-[rgba(255,255,255,0.65)]">Mensuel</span>
-                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-                        <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-[#121212] appearance-none cursor-pointer z-10 transition-all duration-300" checked/>
-                        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-[#333] cursor-pointer transition-colors duration-300"></label>
-                    </div>
-                    <span>Annuel <span class="bg-emerald-500/20 text-emerald-400 text-[10px] uppercase px-2 py-1 rounded-md ml-1">20% Off</span></span>
+            inputs.forEach(input => {
+                if (isManualMode) {
+                    input.removeAttribute('readonly');
+                    input.classList.remove('cursor-default');
+                    input.classList.add('cursor-text'); 
+                } else {
+                    input.setAttribute('readonly', 'true');
+                    input.classList.add('cursor-default');
+                    input.classList.remove('cursor-text');
+                }
+            });
+
+            badges.forEach(badge => {
+                if (isManualMode) {
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            });
+
+            if (isManualMode) {
+                btn.innerHTML = `<svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> <span class="text-brand-orange">Désactiver Saisie Manuelle</span>`;
+                btn.classList.add('border-brand-orange/50', 'bg-brand-orange/10');
+            } else {
+                btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Activer Saisie Manuelle`;
+                btn.classList.remove('border-brand-orange/50', 'bg-brand-orange/10');
+            }
+        }
+    </script>
+</body>
+</html>
